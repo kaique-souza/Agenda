@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,6 +12,12 @@
 		6B0FFB7224B37F7F002F336E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B0FFB7024B37F7F002F336E /* Main.storyboard */; };
 		6B0FFB7424B37F81002F336E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B0FFB7324B37F81002F336E /* Assets.xcassets */; };
 		6B0FFB7724B37F81002F336E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B0FFB7524B37F81002F336E /* LaunchScreen.storyboard */; };
+		6BD4B6C924B3A08E00581EB1 /* Contato.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD4B6C824B3A08E00581EB1 /* Contato.swift */; };
+		6BD4B6CF24B3C79D00581EB1 /* Inter-Medium-slnt=0.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6BD4B6CE24B3C79900581EB1 /* Inter-Medium-slnt=0.ttf */; };
+		6BD4B6D224B3C99900581EB1 /* HomeViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD4B6D024B3C99900581EB1 /* HomeViewViewController.swift */; };
+		6BD4B6D324B3C99900581EB1 /* HomeViewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BD4B6D124B3C99900581EB1 /* HomeViewViewController.xib */; };
+		6BD4B6DE24B3D00300581EB1 /* ListaContatosCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD4B6DC24B3D00300581EB1 /* ListaContatosCollectionViewController.swift */; };
+		6BD4B6DF24B3D00300581EB1 /* ListaContatosCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BD4B6DD24B3D00300581EB1 /* ListaContatosCollectionViewController.xib */; };
 		9A54D4B6FDC0EB294C09F60B /* Pods_appAgenda.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F40ABFF408A8436011EE919 /* Pods_appAgenda.framework */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +29,12 @@
 		6B0FFB7324B37F81002F336E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6B0FFB7624B37F81002F336E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6B0FFB7824B37F81002F336E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6BD4B6C824B3A08E00581EB1 /* Contato.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Contato.swift; path = ../Contato.swift; sourceTree = "<group>"; };
+		6BD4B6CE24B3C79900581EB1 /* Inter-Medium-slnt=0.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Medium-slnt=0.ttf"; sourceTree = "<group>"; };
+		6BD4B6D024B3C99900581EB1 /* HomeViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewViewController.swift; sourceTree = "<group>"; };
+		6BD4B6D124B3C99900581EB1 /* HomeViewViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewViewController.xib; sourceTree = "<group>"; };
+		6BD4B6DC24B3D00300581EB1 /* ListaContatosCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListaContatosCollectionViewController.swift; sourceTree = "<group>"; };
+		6BD4B6DD24B3D00300581EB1 /* ListaContatosCollectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListaContatosCollectionViewController.xib; sourceTree = "<group>"; };
 		9F40ABFF408A8436011EE919 /* Pods_appAgenda.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_appAgenda.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B192E70869FDEAC608040EEE /* Pods-appAgenda.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-appAgenda.debug.xcconfig"; path = "Target Support Files/Pods-appAgenda/Pods-appAgenda.debug.xcconfig"; sourceTree = "<group>"; };
 		F675EAE9C10E17A828E12741 /* Pods-appAgenda.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-appAgenda.release.xcconfig"; path = "Target Support Files/Pods-appAgenda/Pods-appAgenda.release.xcconfig"; sourceTree = "<group>"; };
@@ -62,6 +74,10 @@
 			isa = PBXGroup;
 			children = (
 				6B0FFB6C24B37F7F002F336E /* AppDelegate.swift */,
+				6BD4B6CA24B3C3E000581EB1 /* Model */,
+				6BD4B6CB24B3C41A00581EB1 /* ViewModel */,
+				6BD4B6CC24B3C42500581EB1 /* View */,
+				6BD4B6CD24B3C75600581EB1 /* Fontes */,
 				6B0FFB6E24B37F7F002F336E /* ViewController.swift */,
 				6B0FFB7024B37F7F002F336E /* Main.storyboard */,
 				6B0FFB7324B37F81002F336E /* Assets.xcassets */,
@@ -69,6 +85,40 @@
 				6B0FFB7824B37F81002F336E /* Info.plist */,
 			);
 			path = appAgenda;
+			sourceTree = "<group>";
+		};
+		6BD4B6CA24B3C3E000581EB1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6BD4B6C824B3A08E00581EB1 /* Contato.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6BD4B6CB24B3C41A00581EB1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		6BD4B6CC24B3C42500581EB1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6BD4B6D024B3C99900581EB1 /* HomeViewViewController.swift */,
+				6BD4B6D124B3C99900581EB1 /* HomeViewViewController.xib */,
+				6BD4B6DC24B3D00300581EB1 /* ListaContatosCollectionViewController.swift */,
+				6BD4B6DD24B3D00300581EB1 /* ListaContatosCollectionViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6BD4B6CD24B3C75600581EB1 /* Fontes */ = {
+			isa = PBXGroup;
+			children = (
+				6BD4B6CE24B3C79900581EB1 /* Inter-Medium-slnt=0.ttf */,
+			);
+			path = Fontes;
 			sourceTree = "<group>";
 		};
 		BFA41FB0CF54DC7946FBA39B /* Frameworks */ = {
@@ -95,11 +145,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6B0FFB7B24B37F81002F336E /* Build configuration list for PBXNativeTarget "appAgenda" */;
 			buildPhases = (
-				6BD7FE3124B396740025AA60 /* SwiftLint */,
 				464520CB8353497931DF3E5F /* [CP] Check Pods Manifest.lock */,
+				6BD7FE3124B396740025AA60 /* SwiftLint */,
 				6B0FFB6524B37F7F002F336E /* Sources */,
 				6B0FFB6624B37F7F002F336E /* Frameworks */,
 				6B0FFB6724B37F7F002F336E /* Resources */,
+				AC2E6CF5C32B35DB3D63D2B2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -150,6 +201,9 @@
 			files = (
 				6B0FFB7724B37F81002F336E /* LaunchScreen.storyboard in Resources */,
 				6B0FFB7424B37F81002F336E /* Assets.xcassets in Resources */,
+				6BD4B6D324B3C99900581EB1 /* HomeViewViewController.xib in Resources */,
+				6BD4B6DF24B3D00300581EB1 /* ListaContatosCollectionViewController.xib in Resources */,
+				6BD4B6CF24B3C79D00581EB1 /* Inter-Medium-slnt=0.ttf in Resources */,
 				6B0FFB7224B37F7F002F336E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -197,6 +251,23 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse \necho \"Swift lint nao esta instalado\"\nfi\n";
 		};
+		AC2E6CF5C32B35DB3D63D2B2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-appAgenda/Pods-appAgenda-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-appAgenda/Pods-appAgenda-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-appAgenda/Pods-appAgenda-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -204,8 +275,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BD4B6C924B3A08E00581EB1 /* Contato.swift in Sources */,
 				6B0FFB6F24B37F7F002F336E /* ViewController.swift in Sources */,
+				6BD4B6D224B3C99900581EB1 /* HomeViewViewController.swift in Sources */,
 				6B0FFB6D24B37F7F002F336E /* AppDelegate.swift in Sources */,
+				6BD4B6DE24B3D00300581EB1 /* ListaContatosCollectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,5 +6,6 @@ target 'appAgenda' do
   use_frameworks!
   # Pods for appAgenda
   pod  'SwiftLint'
+  pod 'RealmSwift'
 
 end
