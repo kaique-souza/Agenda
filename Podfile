@@ -7,5 +7,4 @@ target 'appAgenda' do
   # Pods for appAgenda
   pod 'RealmSwift'
   pod  'SwiftLint'
-
 end
