@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6B0FFB6D24B37F7F002F336E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0FFB6C24B37F7F002F336E /* AppDelegate.swift */; };
 		6B0FFB6F24B37F7F002F336E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0FFB6E24B37F7F002F336E /* ViewController.swift */; };
 		6B0FFB7224B37F7F002F336E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B0FFB7024B37F7F002F336E /* Main.storyboard */; };
 		6B0FFB7424B37F81002F336E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B0FFB7324B37F81002F336E /* Assets.xcassets */; };
@@ -16,6 +15,7 @@
 		6B677C4D24B5ECEE005C2CF2 /* NewContatoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B677C4B24B5ECEE005C2CF2 /* NewContatoViewController.xib */; };
 		6B677C4F24B60710005C2CF2 /* ImagePerfilViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B677C4E24B60710005C2CF2 /* ImagePerfilViewModel.swift */; };
 		6B677C5124B61EBE005C2CF2 /* RealmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B677C5024B61EBE005C2CF2 /* RealmViewModel.swift */; };
+		6B677C5324B670A0005C2CF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B677C5224B6709F005C2CF2 /* AppDelegate.swift */; };
 		6B9AB14D24B4DCCB00E39124 /* user_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B9AB14C24B4DCCB00E39124 /* user_image.png */; };
 		6B9AB15024B4E32100E39124 /* ContatoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9AB14E24B4E32100E39124 /* ContatoCollectionViewCell.swift */; };
 		6B9AB15124B4E32100E39124 /* ContatoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B9AB14F24B4E32100E39124 /* ContatoCollectionViewCell.xib */; };
@@ -30,7 +30,6 @@
 
 /* Begin PBXFileReference section */
 		6B0FFB6924B37F7F002F336E /* appAgenda.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = appAgenda.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		6B0FFB6C24B37F7F002F336E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6B0FFB6E24B37F7F002F336E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		6B0FFB7124B37F7F002F336E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6B0FFB7324B37F81002F336E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -40,6 +39,7 @@
 		6B677C4B24B5ECEE005C2CF2 /* NewContatoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewContatoViewController.xib; sourceTree = "<group>"; };
 		6B677C4E24B60710005C2CF2 /* ImagePerfilViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePerfilViewModel.swift; sourceTree = "<group>"; };
 		6B677C5024B61EBE005C2CF2 /* RealmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmViewModel.swift; sourceTree = "<group>"; };
+		6B677C5224B6709F005C2CF2 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6B9AB14C24B4DCCB00E39124 /* user_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_image.png; sourceTree = "<group>"; };
 		6B9AB14E24B4E32100E39124 /* ContatoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContatoCollectionViewCell.swift; sourceTree = "<group>"; };
 		6B9AB14F24B4E32100E39124 /* ContatoCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContatoCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -87,7 +87,7 @@
 		6B0FFB6B24B37F7F002F336E /* appAgenda */ = {
 			isa = PBXGroup;
 			children = (
-				6B0FFB6C24B37F7F002F336E /* AppDelegate.swift */,
+				6B677C5224B6709F005C2CF2 /* AppDelegate.swift */,
 				6BD4B6CA24B3C3E000581EB1 /* Model */,
 				6BD4B6CB24B3C41A00581EB1 /* ViewModel */,
 				6BD4B6CC24B3C42500581EB1 /* View */,
@@ -310,8 +310,8 @@
 				6BD4B6C924B3A08E00581EB1 /* Contato.swift in Sources */,
 				6BB1429E24B3FB730065E92E /* HomeTableViewCell.swift in Sources */,
 				6B0FFB6F24B37F7F002F336E /* ViewController.swift in Sources */,
+				6B677C5324B670A0005C2CF2 /* AppDelegate.swift in Sources */,
 				6BD4B6D224B3C99900581EB1 /* HomeViewViewController.swift in Sources */,
-				6B0FFB6D24B37F7F002F336E /* AppDelegate.swift in Sources */,
 				6B677C5124B61EBE005C2CF2 /* RealmViewModel.swift in Sources */,
 				6B677C4C24B5ECEE005C2CF2 /* NewContatoViewController.swift in Sources */,
 				6B677C4F24B60710005C2CF2 /* ImagePerfilViewModel.swift in Sources */,
