@@ -10,6 +10,7 @@ import UIKit
 
 class ContatoCollectionViewCell: UICollectionViewCell {
 
+    @IBOutlet weak var imageviewCelula: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         

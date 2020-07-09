@@ -14,7 +14,7 @@ class Contato: Object {
     @objc dynamic var nome: String? = ""
     @objc dynamic var sobreNome: String? = ""
     @objc dynamic var imagemPerfil: Data? = nil
-    var imagens = Array<Data>()
+    var imagens = List<Data>()
     
     convenience init(nome: String, sobrenome: String, imagemPerfil: Data) {
         self.init()
@@ -24,3 +24,8 @@ class Contato: Object {
         self.imagens = imagens
     }
 }
+
+class imagens: Object{
+    @objc dynamic var imagem: Data? = nil
+}
+

@@ -106,21 +106,40 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
         }
         present(menu, animated: true, completion: nil)
     }
-    
 }
 
 // MARK: - Extensions
 extension NewContatoViewController: UICollectionViewDelegate{
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let index = collectionView.interactions.endIndex
+        
+        if (index == indexPath.row) {
+            let menu = ImagePerfilViewModel().menuDeOpcoes { (opcao) in
+                self.mostrarMultimidia(opcao)
+            }
+            present(menu, animated: true, completion: nil)
+        }
+    }
 }
 
 extension NewContatoViewController: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        guard let contato = contatoSelecionado else { return 2 }
+        print(contato.imagens.count)
+        return contato.imagens.count + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let celula = collectionViewNewContato.dequeueReusableCell(withReuseIdentifier: "CelulaCollectionViewContatos", for: indexPath) as! ContatoCollectionViewCell
+        
+        
+//        guard let contato = contatoSelecionado else { return celula}
+//        let imagens = contato.imagens
+//        if imagens.endIndex == indexPath.row{
+//            celula.imageviewCelula.image = UIImage(contentsOfFile: "folder.badge.plus")
+//        }
+
         return celula
     }
 }

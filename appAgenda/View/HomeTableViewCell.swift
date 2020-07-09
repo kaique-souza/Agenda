@@ -63,8 +63,8 @@ extension HomeTableViewCell: UICollectionViewDelegate{
 
 extension HomeTableViewCell: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let listaFotos = contatoSelecionado?.imagens.count else { return 0}
-        return listaFotos
+        guard let contato = contatoSelecionado else { return 0}
+        return contato.imagens.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
