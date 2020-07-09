@@ -8,6 +8,7 @@
 
 import UIKit
 
+// MARK: - typealias
 typealias setup = () -> Void
 
 class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
@@ -18,7 +19,6 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
 
     // MARK: - Outlets
     @IBOutlet weak var collectionViewNewContato: UICollectionView!
-    @IBOutlet weak var viewImagePerfil: UIView!
     @IBOutlet weak var textNome: UITextField!
     @IBOutlet weak var textSobrenome: UITextField!
     @IBOutlet weak var imagePerfil: UIImageView!
@@ -58,9 +58,9 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
     }
     
     func arredondaComponentes(){
-        viewImagePerfil.layer.cornerRadius = viewImagePerfil.frame.width / 2
-        viewImagePerfil.layer.borderColor = UIColor.lightGray.cgColor
-        viewImagePerfil.layer.borderWidth = 1
+        imagePerfil.layer.cornerRadius = imagePerfil.frame.width / 2
+        imagePerfil.layer.borderColor = UIColor.lightGray.cgColor
+        imagePerfil.layer.borderWidth = 1
         
         buttonAdicionar.layer.cornerRadius = 5
         buttonAdicionar.layer.masksToBounds = true
@@ -76,6 +76,7 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
         self.setupRealm?()
     }
     
+    // MARK: IBActions
     @IBAction func buttonCancelar(_ sender: UIButton) {
         self.dismiss(animated: false, completion: nil)
     }
@@ -90,6 +91,7 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
     
 }
 
+// MARK: - Extensions
 extension NewContatoViewController: UICollectionViewDelegate{
     
 

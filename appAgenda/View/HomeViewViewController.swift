@@ -10,9 +10,6 @@ import UIKit
 import RealmSwift
 
 class HomeViewViewController: UIViewController {
-    
-    // MARK: - Properts
-    
     // MARK: - Atributs
     //let teste = ["Maria", "joao", "jose", "Kaique", "Kaio", "Marcio"]
     var listaContatos: Array<Contato> = []
@@ -41,14 +38,17 @@ class HomeViewViewController: UIViewController {
         listaContatos = Array(results)
         tableView.reloadData()
     }
-  
+    
+    // MARK: - IBActions
     @IBAction func buttonNovo(_ sender: Any) {
-        let controller = NewContatoViewController(nibName: "NewContatoViewController", bundle: nil)
+        //let controller = NewContatoViewController(nibName: "NewContatoViewController", bundle: nil)
+        let controller = NewContatoViewController(nibName: String(describing: NewContatoViewController.self), bundle: nil)
         controller.setupRealm = self.setupRealm
         present(controller, animated: true, completion: nil)
     }
 }
 
+// MARK: - Extensions
 extension HomeViewViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return listaContatos.count
