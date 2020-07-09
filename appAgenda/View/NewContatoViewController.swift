@@ -16,6 +16,7 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
     // MARK: - Atributos
     var imagePicker = ImagePerfilViewModel()
     var setupRealm: setup?
+    var contatoSelecionado: Contato?
 
     // MARK: - Outlets
     @IBOutlet weak var collectionViewNewContato: UICollectionView!
@@ -28,7 +29,9 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
     override func viewDidLoad() {
         super.viewDidLoad()
         arredondaComponentes()
+        carregaDados()
         setupCollectionview()
+        
     }
     
     // MARK: - Metodos
@@ -36,7 +39,7 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
         imagePicker.delegate = self 
         collectionViewNewContato.delegate = self
         collectionViewNewContato.dataSource = self
-        collectionViewNewContato.register(UINib(nibName: "ContatoCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CelulaCollectionViewContatos")
+        collectionViewNewContato.register(UINib(nibName: String(describing: ContatoCollectionViewCell.self), bundle: nil), forCellWithReuseIdentifier: "CelulaCollectionViewContatos")
         collectionViewNewContato.reloadData()
     }
     
@@ -67,6 +70,21 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
         
     }
     
+    func encerraTelaNovoContato(){
+        self.dismiss(animated: false, completion: nil)
+    }
+    
+    func carregaDados(){
+        guard let contato = contatoSelecionado else { return }
+        guard let imagem = UIImage(data: contato.imagemPerfil!) else { return }
+        imagePerfil.image = imagem
+        
+        textNome.text = contato.nome
+        textSobrenome.text = contato.sobreNome
+    }
+    
+    // MARK: IBActions
+    
     @IBAction func buttonSalvar(_ sender: UIButton) {
         guard let nome = textNome.text else { return }
         guard let sobreNome = textSobrenome.text else { return }
@@ -74,11 +92,11 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
         let contato = Contato(nome: nome, sobrenome: sobreNome, imagemPerfil: imagemPerfil)
         RealmViewModel().insertContato(contato)
         self.setupRealm?()
+        encerraTelaNovoContato()
     }
     
-    // MARK: IBActions
     @IBAction func buttonCancelar(_ sender: UIButton) {
-        self.dismiss(animated: false, completion: nil)
+        encerraTelaNovoContato()
     }
     
     
@@ -94,8 +112,6 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
 // MARK: - Extensions
 extension NewContatoViewController: UICollectionViewDelegate{
     
-
-    
 }
 
 extension NewContatoViewController: UICollectionViewDataSource{
@@ -109,3 +125,8 @@ extension NewContatoViewController: UICollectionViewDataSource{
     }
 }
 
+extension NewContatoCollectionViewCell: UICollectionViewDelegateFlowLayout{
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 100, height: 100)
+    }
+}

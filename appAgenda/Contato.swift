@@ -14,12 +14,13 @@ class Contato: Object {
     @objc dynamic var nome: String? = ""
     @objc dynamic var sobreNome: String? = ""
     @objc dynamic var imagemPerfil: Data? = nil
-    //@objc dynamic var imagens = Array<Data>()
+    //var imagens = Array<Data>()
     
     convenience init(nome: String, sobrenome: String, imagemPerfil: Data) {
         self.init()
         self.nome = nome
         self.sobreNome = sobrenome
         self.imagemPerfil = imagemPerfil
+        //self.imagens = imagens
     }
 }

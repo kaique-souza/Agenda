@@ -28,7 +28,7 @@ class HomeViewViewController: UIViewController {
     func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register (UINib(nibName: "HomeTableViewCell", bundle: nil), forCellReuseIdentifier: "CelulaContatos")
+        tableView.register (UINib(nibName: String(describing: HomeTableViewCell.self), bundle: nil), forCellReuseIdentifier: "CelulaContatos")
         tableView.reloadData()
     }
     
@@ -41,7 +41,6 @@ class HomeViewViewController: UIViewController {
     
     // MARK: - IBActions
     @IBAction func buttonNovo(_ sender: Any) {
-        //let controller = NewContatoViewController(nibName: "NewContatoViewController", bundle: nil)
         let controller = NewContatoViewController(nibName: String(describing: NewContatoViewController.self), bundle: nil)
         controller.setupRealm = self.setupRealm
         present(controller, animated: true, completion: nil)
@@ -59,9 +58,16 @@ extension HomeViewViewController: UITableViewDataSource {
         let celula = tableView.dequeueReusableCell(withIdentifier: "CelulaContatos", for: indexPath) as! HomeTableViewCell
         let contato = listaContatos[indexPath.row]
 //        celula.tamanhoColletionView = contato.imagens.count
-        celula.formatCelula(contato)
+        celula.setupCelula(contato)
         
         return celula
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let contato = listaContatos[indexPath.row]
+        let controller = NewContatoViewController(nibName: String(describing: NewContatoViewController.self), bundle: nil)
+        controller.contatoSelecionado = contato
+        present(controller, animated: true, completion: nil)
     }
 }
 

@@ -29,11 +29,16 @@ class HomeTableViewCell: UITableViewCell {
     }
     
     // MARK: - Metodos
-    func formatCelula(_ contato: Contato) {
+    func setupCelula(_ contato: Contato) {
         guard let nome = contato.nome else { return }
         guard let sobreNome = contato.sobreNome else { return }
         
         labelNomeCompleto.text = "\(nome) \(sobreNome)"
+        
+        guard let imagem = UIImage(data: contato.imagemPerfil!) else { return }
+        imagePerfil.image = imagem
+        
+        
         fotmatViewImagePerfil()
         setupCollectionView()
     }
@@ -47,7 +52,7 @@ class HomeTableViewCell: UITableViewCell {
     func setupCollectionView(){
         collectionViewContatos.delegate =  self
         collectionViewContatos.dataSource =  self
-        collectionViewContatos.register(UINib(nibName: "ContatoCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CelulaCollectionViewContatos")
+        collectionViewContatos.register(UINib(nibName: String(describing: ContatoCollectionViewCell.self), bundle: nil), forCellWithReuseIdentifier: "CelulaCollectionViewContatos")
         collectionViewContatos.reloadData()
     }
 }

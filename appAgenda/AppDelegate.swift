@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         
-        let controller = HomeViewViewController(nibName: "HomeViewViewController", bundle: nil)
+        let controller = HomeViewViewController(nibName: String(describing: HomeViewViewController.self), bundle: nil)
         
 //        let controller = NewContatoViewController(nibName: "NewContatoViewController", bundle: nil)
         
