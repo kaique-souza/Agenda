@@ -8,10 +8,14 @@
 
 import UIKit
 
+typealias setup = () -> Void
+
 class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
     
     // MARK: - Atributos
     var imagePicker = ImagePerfilViewModel()
+    var setupRealm: setup?
+
     // MARK: - Outlets
     @IBOutlet weak var collectionViewNewContato: UICollectionView!
     @IBOutlet weak var viewImagePerfil: UIView!
@@ -62,19 +66,14 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
         buttonAdicionar.layer.masksToBounds = true
         
     }
+    
     @IBAction func buttonSalvar(_ sender: UIButton) {
         guard let nome = textNome.text else { return }
         guard let sobreNome = textSobrenome.text else { return }
         guard let imagemPerfil = imagePerfil.image?.pngData() else { return }
-//        let contato = Contato(nome: nome, sobrenome: sobreNome, imagemPerfil: imagemPerfil)
-
-        let contato = Contato()
-        contato.nome = nome
-        contato.sobreNome = sobreNome
-        contato.imagemPerfil = imagemPerfil
+        let contato = Contato(nome: nome, sobrenome: sobreNome, imagemPerfil: imagemPerfil)
         RealmViewModel().insertContato(contato)
-        
-        //RealmViewModel().consulta()
+        self.setupRealm?()
     }
     
     @IBAction func buttonCancelar(_ sender: UIButton) {

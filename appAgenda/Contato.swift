@@ -16,14 +16,10 @@ class Contato: Object {
     @objc dynamic var imagemPerfil: Data? = nil
     //@objc dynamic var imagens = Array<Data>()
     
-//    init(nome: String, sobrenome: String, imagemPerfil: Data){
-//        self.nome = nome
-//        self.sobreNome = sobrenome
-//        self.imagemPerfil = imagemPerfil
-//        //self.imagens = imagens
-//    }
-//    
-//    required init() {
-//        fatalError("init() has not been implemented")
-//    }
+    convenience init(nome: String, sobrenome: String, imagemPerfil: Data) {
+        self.init()
+        self.nome = nome
+        self.sobreNome = sobrenome
+        self.imagemPerfil = imagemPerfil
+    }
 }

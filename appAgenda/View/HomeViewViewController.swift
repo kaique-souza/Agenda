@@ -39,17 +39,19 @@ class HomeViewViewController: UIViewController {
         let realm = try! Realm()
         let results = realm.objects(Contato.self)
         listaContatos = Array(results)
+        tableView.reloadData()
     }
   
     @IBAction func buttonNovo(_ sender: Any) {
         let controller = NewContatoViewController(nibName: "NewContatoViewController", bundle: nil)
+        controller.setupRealm = self.setupRealm
         present(controller, animated: true, completion: nil)
     }
 }
 
 extension HomeViewViewController: UITableViewDataSource {
-   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return listaContatos.count
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return listaContatos.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
