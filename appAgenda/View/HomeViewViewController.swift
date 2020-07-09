@@ -57,7 +57,7 @@ extension HomeViewViewController: UITableViewDataSource {
         
         let celula = tableView.dequeueReusableCell(withIdentifier: "CelulaContatos", for: indexPath) as! HomeTableViewCell
         let contato = listaContatos[indexPath.row]
-//        celula.tamanhoColletionView = contato.imagens.count
+        celula.contatoSelecionado = contato
         celula.setupCelula(contato)
         
         return celula

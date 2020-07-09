@@ -11,7 +11,7 @@ import UIKit
 class HomeTableViewCell: UITableViewCell {
     
     // MARK: - Atributos
-    var tamanhoColletionView = 0
+    var contatoSelecionado: Contato?
     // MARK: - Outlets
     @IBOutlet weak var viewImagePerfil: UIView!
     @IBOutlet weak var imagePerfil: UIImageView!
@@ -63,7 +63,8 @@ extension HomeTableViewCell: UICollectionViewDelegate{
 
 extension HomeTableViewCell: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        guard let listaFotos = contatoSelecionado?.imagens.count else { return 0}
+        return listaFotos
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
