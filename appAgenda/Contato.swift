@@ -21,11 +21,11 @@ class Contato: Object {
         self.nome = nome
         self.sobreNome = sobrenome
         self.imagemPerfil = imagemPerfil
-        self.imagens = imagens
+       // self.imagens.append(imagens)
     }
 }
 
-class imagens: Object{
+class Imagens: Object{
     @objc dynamic var imagem: Data? = nil
 }
 

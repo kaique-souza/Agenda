@@ -56,7 +56,24 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
             imagePerfil.image = foto
             break
         case .collectionViewl:
-            setupCollectionview()
+//            guard let contato = contatoSelecionado else { return }
+//            //var lista = Array(contato.imagens)
+//            guard let imagem = foto.pngData() else { return }
+//
+//            try! realm.write {
+//                let img = Imagens()
+//                img.imagem = imagem
+//                realm.add(img)
+//                contato.imagens = img
+//            }
+//
+//            let indexPath = IndexPath(item: lista.count - 1, section: 0)
+//            let indexPaths: [IndexPath] = [indexPath]
+//
+//            collectionViewNewContato.performBatchUpdates({
+//                collectionViewNewContato.insertItems(at: indexPaths)
+//            }, completion: nil)
+            
             break
         default:
             break
