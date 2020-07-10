@@ -9,7 +9,7 @@
 import UIKit
 
 protocol imagePickerFotoSelecionada {
-    func imagePickerFotoSelecionada(_ foto: UIImage)
+    func imagePickerFotoSelecionada(_ foto: UIImage) 
 }
 enum MenuOpcoes{
     case camera
@@ -21,8 +21,8 @@ class ImagePerfilViewModel: NSObject, UIImagePickerControllerDelegate, UINavigat
     
     // MARK: - Atributos
     var delegate: imagePickerFotoSelecionada?
-    // MARK: - Metodos
     
+    // MARK: - Metodos
      func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let foto = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
         delegate?.imagePickerFotoSelecionada(foto)

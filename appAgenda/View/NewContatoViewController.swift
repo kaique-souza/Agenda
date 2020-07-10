@@ -8,6 +8,12 @@
 
 import UIKit
 
+// MARK: - Enum
+enum addFoto {
+    case buttonAdicionar
+    case collectionViewl
+}
+
 // MARK: - typealias
 typealias setup = () -> Void
 
@@ -17,6 +23,7 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
     var imagePicker = ImagePerfilViewModel()
     var setupRealm: setup?
     var contatoSelecionado: Contato?
+    var origem: addFoto?
 
     // MARK: - Outlets
     @IBOutlet weak var collectionViewNewContato: UICollectionView!
@@ -43,8 +50,18 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
         collectionViewNewContato.reloadData()
     }
     
-    func imagePickerFotoSelecionada (_ foto: UIImage){
-        imagePerfil.image = foto
+    func imagePickerFotoSelecionada (_ foto: UIImage) {
+        switch origem {
+        case .buttonAdicionar:
+            imagePerfil.image = foto
+            break
+        case .collectionViewl:
+            setupCollectionview()
+            break
+        default:
+            break
+        }
+        
     }
     
     func mostrarMultimidia(_ opcao:MenuOpcoes) {
@@ -90,7 +107,11 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
         guard let sobreNome = textSobrenome.text else { return }
         guard let imagemPerfil = imagePerfil.image?.pngData() else { return }
         let contato = Contato(nome: nome, sobrenome: sobreNome, imagemPerfil: imagemPerfil)
-        RealmViewModel().insertContato(contato)
+        //if let contatoSelecionado = contatoSelecionado {
+         //   RealmViewModel().updateContato(contatoSelecionado)
+       // }else{
+           RealmViewModel().insertContato(contato)
+//        }
         self.setupRealm?()
         encerraTelaNovoContato()
     }
@@ -102,6 +123,7 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
     
     @IBAction func adicionar(_ sender: Any) {
         let menu = ImagePerfilViewModel().menuDeOpcoes { (opcao) in
+            self.origem = .buttonAdicionar
             self.mostrarMultimidia(opcao)
         }
         present(menu, animated: true, completion: nil)
@@ -112,10 +134,11 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
 extension NewContatoViewController: UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let index = collectionView.interactions.endIndex
+        let index = collectionView.interactions.endIndex - 1
         
         if (index == indexPath.row) {
             let menu = ImagePerfilViewModel().menuDeOpcoes { (opcao) in
+                self.origem = .collectionViewl
                 self.mostrarMultimidia(opcao)
             }
             present(menu, animated: true, completion: nil)
@@ -125,21 +148,19 @@ extension NewContatoViewController: UICollectionViewDelegate{
 
 extension NewContatoViewController: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let contato = contatoSelecionado else { return 2 }
-        print(contato.imagens.count)
+        guard let contato = contatoSelecionado else { return 1}
         return contato.imagens.count + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let celula = collectionViewNewContato.dequeueReusableCell(withReuseIdentifier: "CelulaCollectionViewContatos", for: indexPath) as! ContatoCollectionViewCell
         
-        
-//        guard let contato = contatoSelecionado else { return celula}
-//        let imagens = contato.imagens
-//        if imagens.endIndex == indexPath.row{
-//            celula.imageviewCelula.image = UIImage(contentsOfFile: "folder.badge.plus")
-//        }
-
+        let index = collectionView.interactions.endIndex - 1
+        if index == indexPath.row{
+            if #available(iOS 13.0, *) {
+                celula.imageviewCelula.image = UIImage(systemName: "folder.badge.plus")
+            } 
+        }
         return celula
     }
 }
