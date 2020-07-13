@@ -69,6 +69,15 @@ extension HomeViewViewController: UITableViewDataSource {
         controller.contatoSelecionado = contato
         present(controller, animated: true, completion: nil)
     }
+    
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        DispatchQueue.main.async {
+//            let alunoSelecionado = self.alunos[indexPath.row]
+//            // incluir o remove item
+//            self.imagens.remove(at: indexPath.row)
+//            self.tableView.deleteRows(at: [indexPath], with: .fade)
+//        }
+//    }
 }
 
 extension HomeViewViewController: UITableViewDelegate {

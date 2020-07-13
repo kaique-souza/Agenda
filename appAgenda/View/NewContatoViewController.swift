@@ -73,7 +73,6 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
 //            collectionViewNewContato.performBatchUpdates({
 //                collectionViewNewContato.insertItems(at: indexPaths)
 //            }, completion: nil)
-            
             break
         default:
             break
@@ -118,19 +117,24 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
     }
     
     // MARK: IBActions
-    
     @IBAction func buttonSalvar(_ sender: UIButton) {
         guard let nome = textNome.text else { return }
         guard let sobreNome = textSobrenome.text else { return }
         guard let imagemPerfil = imagePerfil.image?.pngData() else { return }
-        let contato = Contato(nome: nome, sobrenome: sobreNome, imagemPerfil: imagemPerfil)
-        //if let contatoSelecionado = contatoSelecionado {
-         //   RealmViewModel().updateContato(contatoSelecionado)
-       // }else{
-           RealmViewModel().insertContato(contato)
-//        }
+        
+        if let contato = contatoSelecionado {
+            try! realm.write {
+                contato.nome = nome
+                contato.sobreNome = sobreNome
+                contato.imagemPerfil = imagemPerfil
+            }
+        } else {
+            let contato = Contato(nome: nome, sobrenome: sobreNome, imagemPerfil: imagemPerfil)
+            RealmViewModel().insertContato(contato)
+        }
         self.setupRealm?()
         encerraTelaNovoContato()
+        
     }
     
     @IBAction func buttonCancelar(_ sender: UIButton) {

@@ -19,11 +19,11 @@ class RealmViewModel: NSObject {
         try! realm.commitWrite()
     }
     
-    func updateContato(_ contato: Contato){
-        realm.beginWrite()
-        realm.add(contato, update: .modified)
-        try! realm.commitWrite()
-    }
+//    func updateContato(_ contato: Contato){
+//        realm.beginWrite()
+//        realm.add(contato, update: .modified)
+//        try! realm.commitWrite()
+//    }
     
     func consulta(){
         let carinha = realm.objects(Contato.self)
