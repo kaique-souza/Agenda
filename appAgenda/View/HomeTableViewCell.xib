@@ -13,12 +13,12 @@
         <tableViewCell contentMode="scaleToFill" restorationIdentifier="CelulaContatos" selectionStyle="default" indentationWidth="10" rowHeight="167" id="KGk-i7-Jjw" customClass="HomeTableViewCell" customModule="appAgenda" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="397" height="167"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="397" height="167"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oOU-B4-wkZ">
-                        <rect key="frame" x="0.0" y="0.0" width="397" height="170"/>
+                        <rect key="frame" x="0.0" y="0.0" width="397" height="167"/>
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MA6-1w-tVd">
                                 <rect key="frame" x="8" y="10" width="60" height="60"/>
@@ -52,9 +52,6 @@
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.8901960784313725" blue="0.84705882352941175" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="170" id="czE-NA-9ba"/>
-                        </constraints>
                     </view>
                 </subviews>
                 <constraints>

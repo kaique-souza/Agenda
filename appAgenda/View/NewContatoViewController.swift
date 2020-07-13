@@ -46,7 +46,7 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
         imagePicker.delegate = self 
         collectionViewNewContato.delegate = self
         collectionViewNewContato.dataSource = self
-        collectionViewNewContato.register(UINib(nibName: String(describing: ContatoCollectionViewCell.self), bundle: nil), forCellWithReuseIdentifier: "CelulaCollectionViewContatos")
+        collectionViewNewContato.register(UINib(nibName: String(describing: ContatoCollectionViewCell.self), bundle: nil), forCellWithReuseIdentifier: ContatoCollectionViewCell.identifier())
         collectionViewNewContato.reloadData()
     }
     
@@ -54,26 +54,15 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
         switch origem {
         case .buttonAdicionar:
             imagePerfil.image = foto
-            break
         case .collectionViewl:
-//            guard let contato = contatoSelecionado else { return }
-//            //var lista = Array(contato.imagens)
-//            guard let imagem = foto.pngData() else { return }
-//
-//            try! realm.write {
-//                let img = Imagens()
-//                img.imagem = imagem
-//                realm.add(img)
-//                contato.imagens = img
-//            }
-//
-//            let indexPath = IndexPath(item: lista.count - 1, section: 0)
-//            let indexPaths: [IndexPath] = [indexPath]
-//
-//            collectionViewNewContato.performBatchUpdates({
-//                collectionViewNewContato.insertItems(at: indexPaths)
-//            }, completion: nil)
-            break
+            guard let contato = contatoSelecionado, let imagem = foto.pngData()  else { return }
+            //var lista = Array(contato.imagens)
+            try! realm.write {
+                let img = Imagens()
+                img.imagem = imagem
+                contato.imagens.append(img)
+            }
+            collectionViewNewContato.reloadData()
         default:
             break
         }
@@ -132,9 +121,10 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
             let contato = Contato(nome: nome, sobrenome: sobreNome, imagemPerfil: imagemPerfil)
             RealmViewModel().insertContato(contato)
         }
+//        let contato = Contato(nome: nome, sobrenome: sobreNome, imagemPerfil: imagemPerfil)
+//        RealmViewModel().insertContato(contato)
         self.setupRealm?()
         encerraTelaNovoContato()
-        
     }
     
     @IBAction func buttonCancelar(_ sender: UIButton) {
@@ -174,14 +164,20 @@ extension NewContatoViewController: UICollectionViewDataSource{
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let celula = collectionViewNewContato.dequeueReusableCell(withReuseIdentifier: "CelulaCollectionViewContatos", for: indexPath) as! ContatoCollectionViewCell
-        
-        let index = collectionView.interactions.endIndex - 1
-        if index == indexPath.row{
-            if #available(iOS 13.0, *) {
-                celula.imageviewCelula.image = UIImage(systemName: "folder.badge.plus")
-            } 
+        if let celula = collectionViewNewContato.dequeueReusableCell(withReuseIdentifier: "CelulaCollectionViewContatos", for: indexPath) as? ContatoCollectionViewCell {
+            let index = contatoSelecionado?.imagens.count ?? 0
+            
+            if  index == indexPath.row {
+                if #available(iOS 13.0, *) {
+                    celula.imageviewCelula.image = UIImage(systemName: "folder.badge.plus")
+                }
+            } else if let contato = contatoSelecionado {
+                let imagem = UIImage(data: contato.imagens[indexPath.row].imagem)
+                celula.imageviewCelula.image = imagem
+            }
+            return celula
+        } else {
+            return UICollectionViewCell()
         }
-        return celula
     }
 }

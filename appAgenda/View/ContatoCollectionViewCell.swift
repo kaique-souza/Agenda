@@ -15,5 +15,9 @@ class ContatoCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         
     }
+    
+    static func identifier() -> String {
+        return "CelulaCollectionViewContatos"
+    }
 
 }

@@ -32,18 +32,24 @@ class HomeViewViewController: UIViewController {
         tableView.reloadData()
     }
     
-    func setupRealm(){
+    func setupRealm() {
         let realm = try! Realm()
         let results = realm.objects(Contato.self)
         listaContatos = Array(results)
+        print(listaContatos.first?.nome)
         tableView.reloadData()
+    }
+    
+    func instaciaCelula(_ contato: Contato? = nil) {
+        let controller = NewContatoViewController(nibName: String(describing: NewContatoViewController.self), bundle: nil)
+        controller.contatoSelecionado = contato
+        controller.setupRealm = self.setupRealm
+        present(controller, animated: true, completion: nil)
     }
     
     // MARK: - IBActions
     @IBAction func buttonNovo(_ sender: Any) {
-        let controller = NewContatoViewController(nibName: String(describing: NewContatoViewController.self), bundle: nil)
-        controller.setupRealm = self.setupRealm
-        present(controller, animated: true, completion: nil)
+        instaciaCelula()
     }
 }
 
@@ -64,10 +70,7 @@ extension HomeViewViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let contato = listaContatos[indexPath.row]
-        let controller = NewContatoViewController(nibName: String(describing: NewContatoViewController.self), bundle: nil)
-        controller.contatoSelecionado = contato
-        present(controller, animated: true, completion: nil)
+        instaciaCelula(listaContatos[indexPath.row])
     }
     
 //    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
