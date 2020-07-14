@@ -192,7 +192,7 @@ extension NewContatoViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let celula = collectionViewNewContato.dequeueReusableCell(withReuseIdentifier: "CelulaCollectionViewContatos", for: indexPath) as? ContatoCollectionViewCell {
+        if let celula = collectionViewNewContato.dequeueReusableCell(withReuseIdentifier: ContatoCollectionViewCell.identifier(), for: indexPath) as? ContatoCollectionViewCell {
             let index = contatoSelecionado?.imagens.count ?? 0
             
             if index == indexPath.last {

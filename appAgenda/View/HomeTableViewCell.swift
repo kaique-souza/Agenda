@@ -45,6 +45,10 @@ class HomeTableViewCell: UITableViewCell {
         setupCollectionView()
     }
     
+    static func identifier() -> String {
+        return "CelulaContatos"
+    }
+    
     func fotmatViewImagePerfil(){
         viewImagePerfil.layer.cornerRadius = viewImagePerfil.frame.width / 2
         viewImagePerfil.layer.borderWidth = 1
@@ -71,7 +75,7 @@ extension HomeTableViewCell: UICollectionViewDataSource{
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        if let celula = collectionViewContatos.dequeueReusableCell(withReuseIdentifier: "CelulaCollectionViewContatos", for: indexPath) as? ContatoCollectionViewCell, let imagens = contatoSelecionado?.imagens[indexPath.row] {
+        if let celula = collectionViewContatos.dequeueReusableCell(withReuseIdentifier: ContatoCollectionViewCell.identifier(), for: indexPath) as? ContatoCollectionViewCell, let imagens = contatoSelecionado?.imagens[indexPath.row] {
             celula.backgroundColor = UIColor.black
             celula.setupCelula(imagens)
             return celula

@@ -11,7 +11,6 @@ import RealmSwift
 
 class HomeViewViewController: UIViewController {
     // MARK: - Atributs
-    //let teste = ["Maria", "joao", "jose", "Kaique", "Kaio", "Marcio"]
     var listaContatos: Array<Contato> = []
     
     // MARK: - Outlets
@@ -28,7 +27,7 @@ class HomeViewViewController: UIViewController {
     func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register (UINib(nibName: String(describing: HomeTableViewCell.self), bundle: nil), forCellReuseIdentifier: "CelulaContatos")
+        tableView.register (UINib(nibName: String(describing: HomeTableViewCell.self), bundle: nil), forCellReuseIdentifier: HomeTableViewCell.identifier())
         tableView.reloadData()
     }
     
@@ -60,7 +59,7 @@ extension HomeViewViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let celula = tableView.dequeueReusableCell(withIdentifier: "CelulaContatos", for: indexPath) as! HomeTableViewCell
+        let celula = tableView.dequeueReusableCell(withIdentifier: HomeTableViewCell.identifier(), for: indexPath) as! HomeTableViewCell
         let contato = listaContatos[indexPath.row]
         celula.contatoSelecionado = contato
         celula.setupCelula(contato)
