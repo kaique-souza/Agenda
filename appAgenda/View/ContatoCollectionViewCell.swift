@@ -19,5 +19,10 @@ class ContatoCollectionViewCell: UICollectionViewCell {
     static func identifier() -> String {
         return "CelulaCollectionViewContatos"
     }
-
+    
+    func setupCelula(_ imagens: Imagens){
+        guard let imagem = UIImage(data: imagens.imagem) else { return }
+        imageviewCelula.image = imagem
+    }
 }
+

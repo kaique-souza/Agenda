@@ -36,11 +36,10 @@ class HomeViewViewController: UIViewController {
         let realm = try! Realm()
         let results = realm.objects(Contato.self)
         listaContatos = Array(results)
-        print(listaContatos.first?.nome)
         tableView.reloadData()
     }
     
-    func instaciaCelula(_ contato: Contato? = nil) {
+    func instatiateCell(_ contato: Contato? = nil) {
         let controller = NewContatoViewController(nibName: String(describing: NewContatoViewController.self), bundle: nil)
         controller.contatoSelecionado = contato
         controller.setupRealm = self.setupRealm
@@ -49,7 +48,7 @@ class HomeViewViewController: UIViewController {
     
     // MARK: - IBActions
     @IBAction func buttonNovo(_ sender: Any) {
-        instaciaCelula()
+        instatiateCell()
     }
 }
 
@@ -70,7 +69,7 @@ extension HomeViewViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        instaciaCelula(listaContatos[indexPath.row])
+        instatiateCell(listaContatos[indexPath.row])
     }
     
 //    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

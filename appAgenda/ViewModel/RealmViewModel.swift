@@ -20,16 +20,14 @@ class RealmViewModel: NSObject {
     }
     
 //    func updateContato(_ contato: Contato){
-//        realm.beginWrite()
-//        realm.add(contato, update: .modified)
-//        try! realm.commitWrite()
+//       
 //    }
     
-    func consulta(){
-        let carinha = realm.objects(Contato.self)
-        for cara in carinha{
-            print(cara.nome)
-            print(cara.imagemPerfil)
-        }
-    }
+//    func consulta(){
+//        let contatos = realm.objects(Contato.self)
+//        for contato in contatos{
+//            print(contato.nome)
+//            print(contato.imagemPerfil)
+//        }
+//    }
 }

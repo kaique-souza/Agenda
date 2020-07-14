@@ -35,6 +35,8 @@ class HomeTableViewCell: UITableViewCell {
         
         labelNomeCompleto.text = "\(nome) \(sobreNome)"
         
+    
+        
         guard let imagem = UIImage(data: contato.imagemPerfil!) else { return }
         imagePerfil.image = imagem
         
@@ -69,10 +71,12 @@ extension HomeTableViewCell: UICollectionViewDataSource{
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let celula = collectionViewContatos.dequeueReusableCell(withReuseIdentifier: "CelulaCollectionViewContatos", for: indexPath) as! ContatoCollectionViewCell
-        
-        celula.backgroundColor = UIColor.black
-        return celula
+        if let celula = collectionViewContatos.dequeueReusableCell(withReuseIdentifier: "CelulaCollectionViewContatos", for: indexPath) as? ContatoCollectionViewCell, let imagens = contatoSelecionado?.imagens[indexPath.row] {
+            celula.backgroundColor = UIColor.black
+            celula.setupCelula(imagens)
+            return celula
+        }
+       return ContatoCollectionViewCell()
     }
 
 

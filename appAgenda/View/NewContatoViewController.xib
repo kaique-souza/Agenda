@@ -85,6 +85,7 @@
                         <constraint firstAttribute="height" constant="180" id="oyZ-Zt-iVv"/>
                         <constraint firstAttribute="width" secondItem="vbb-fn-nXq" secondAttribute="height" multiplier="1:1" id="uRN-E6-QoO"/>
                     </constraints>
+                    <viewLayoutGuide key="safeArea" id="sOw-oj-09x"/>
                 </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -100,10 +101,10 @@
                 <constraint firstItem="Y37-QL-jUJ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="S3v-UP-jmG"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Xmo-oG-xaj" secondAttribute="trailing" constant="20" id="TIR-uI-4ZY"/>
                 <constraint firstItem="dvk-WD-3NR" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Vpw-tN-r1I"/>
+                <constraint firstItem="dvk-WD-3NR" firstAttribute="top" secondItem="vbb-fn-nXq" secondAttribute="bottom" constant="62" id="Z9k-jj-WiY"/>
                 <constraint firstItem="Xmo-oG-xaj" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="e7b-Ma-kYT"/>
                 <constraint firstItem="RgX-gP-qfj" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="15" id="goR-So-Q98"/>
                 <constraint firstItem="c7N-XX-YK8" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="hQd-XF-ly6"/>
-                <constraint firstItem="dvk-WD-3NR" firstAttribute="top" secondItem="vbb-fn-nXq" secondAttribute="bottom" constant="62" id="iUC-9x-4m3"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Y37-QL-jUJ" secondAttribute="trailing" constant="20" id="pub-1j-WfN"/>
                 <constraint firstItem="RgX-gP-qfj" firstAttribute="top" secondItem="aGd-iP-JzQ" secondAttribute="bottom" constant="10" id="tXM-KH-u5g"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="aGd-iP-JzQ" secondAttribute="trailing" constant="15" id="v7g-rD-76f"/>
