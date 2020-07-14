@@ -187,7 +187,7 @@ extension NewContatoViewController: UICollectionViewDelegate {
 
 extension NewContatoViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let contato = contatoSelecionado else { return 1}
+        guard let contato = contatoSelecionado else { return 0}
         return contato.imagens.count + 1
     }
     
@@ -195,10 +195,9 @@ extension NewContatoViewController: UICollectionViewDataSource {
         if let celula = collectionViewNewContato.dequeueReusableCell(withReuseIdentifier: "CelulaCollectionViewContatos", for: indexPath) as? ContatoCollectionViewCell {
             let index = contatoSelecionado?.imagens.count ?? 0
             
-            if  index == indexPath.row {
-                if #available(iOS 13.0, *) {
-                    celula.imageviewCelula.image = UIImage(systemName: "folder.badge.plus")
-                }
+            if index == indexPath.last {
+                celula.personalizeCell()
+                //UIImage(systemName: "folder.badge.plus")
             } else if let contato = contatoSelecionado {
                 let imagem = UIImage(data: contato.imagens[indexPath.row].imagem)
                 celula.imageviewCelula.image = imagem

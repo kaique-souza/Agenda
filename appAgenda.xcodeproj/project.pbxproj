@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B02BAB624BDFCEC0012E237 /* icons8-adicionar-imagem-30.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B02BAB524BDFCEC0012E237 /* icons8-adicionar-imagem-30.png */; };
 		6B0FFB6F24B37F7F002F336E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0FFB6E24B37F7F002F336E /* ViewController.swift */; };
 		6B0FFB7224B37F7F002F336E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B0FFB7024B37F7F002F336E /* Main.storyboard */; };
 		6B0FFB7424B37F81002F336E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B0FFB7324B37F81002F336E /* Assets.xcassets */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6B02BAB524BDFCEC0012E237 /* icons8-adicionar-imagem-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-adicionar-imagem-30.png"; sourceTree = "<group>"; };
 		6B0FFB6924B37F7F002F336E /* appAgenda.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = appAgenda.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B0FFB6E24B37F7F002F336E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		6B0FFB7124B37F7F002F336E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 		6B9AB14B24B4DC1300E39124 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				6B02BAB524BDFCEC0012E237 /* icons8-adicionar-imagem-30.png */,
 				6B9AB14C24B4DCCB00E39124 /* user_image.png */,
 			);
 			path = Assets;
@@ -235,6 +238,7 @@
 				6BD4B6CF24B3C79D00581EB1 /* Inter-Medium-slnt=0.ttf in Resources */,
 				6B9AB15124B4E32100E39124 /* ContatoCollectionViewCell.xib in Resources */,
 				6B677C4D24B5ECEE005C2CF2 /* NewContatoViewController.xib in Resources */,
+				6B02BAB624BDFCEC0012E237 /* icons8-adicionar-imagem-30.png in Resources */,
 				6BB1429F24B3FB730065E92E /* HomeTableViewCell.xib in Resources */,
 				6B0FFB7224B37F7F002F336E /* Main.storyboard in Resources */,
 			);
