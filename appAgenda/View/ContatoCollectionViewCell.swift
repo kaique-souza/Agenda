@@ -26,7 +26,7 @@ class ContatoCollectionViewCell: UICollectionViewCell {
     }
     
     func personalizeCell(){
-        imageviewCelula.contentMode = .scaleToFill
+        imageviewCelula.contentMode = .center
         imageviewCelula.image = UIImage(named: "icons8-adicionar-imagem-30")
     }
    

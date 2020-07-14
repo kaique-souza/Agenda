@@ -195,7 +195,7 @@ extension NewContatoViewController: UICollectionViewDataSource {
         if let celula = collectionViewNewContato.dequeueReusableCell(withReuseIdentifier: ContatoCollectionViewCell.identifier(), for: indexPath) as? ContatoCollectionViewCell {
             let index = contatoSelecionado?.imagens.count ?? 0
             
-            if index == indexPath.last {
+            if index == indexPath.row {
                 celula.personalizeCell()
                 //UIImage(systemName: "folder.badge.plus")
             } else if let contato = contatoSelecionado {
