@@ -45,7 +45,6 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
         arredondaComponentes()
         carregaDados()
         setupCollectionview()
-        
     }
     
     // MARK: - Metodos
