@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class RealmViewModel: NSObject {
+class RealmDataSource: NSObject {
     let realm = try! Realm()
     
     // MARK: - Metodos

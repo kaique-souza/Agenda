@@ -140,7 +140,7 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
             contato.nome = nome
             contato.sobreNome = sobreNome
             contato.imagemPerfil = imagemPerfil
-            RealmViewModel().insertContato(contato)
+            RealmDataSource().insertContato(contato)
         case .update:
             try! realm.write {
                 contato.nome = nome
