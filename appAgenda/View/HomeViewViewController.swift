@@ -38,9 +38,7 @@ class HomeViewViewController: UIViewController {
     }
     
     func instatiateCell(_ contato: Contato? = nil) {
-        let controller = NewContatoViewController(nibName: String(describing: NewContatoViewController.self), bundle: nil)
-        controller.contatoModel = NewContatoViewModel(contato)
-//        controller.contatoSelecionado = controller.contatoModel?.contatoSeleicionado
+        let controller = NewContatoViewController(contato)
         controller.setupRealm = self.setupRealm
         present(controller, animated: true, completion: nil)
     }

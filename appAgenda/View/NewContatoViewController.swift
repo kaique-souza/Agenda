@@ -22,8 +22,7 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
     // MARK: - Atributos
     var imagePicker = ImagePerfil()
     var setupRealm: setup?
-    var contatoModel: NewContatoViewModel?
-    var contatoSelecionado: Contato?
+    var viewModel: NewContatoViewModel
     var origem: addFoto?
 
     // MARK: - Outlets
@@ -33,10 +32,18 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
     @IBOutlet weak var imagePerfil: UIImageView!
     @IBOutlet weak var buttonAdicionar: UIButton!
     
+    init(_ contato: Contato? = nil) {
+        self.viewModel = NewContatoViewModel(contato)
+        super.init(nibName: String(describing: NewContatoViewController.self), bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - life of cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        contatoSelecionado = contatoModel?.contatoSeleicionado
         carregaDados()
         arredondaComponentes()
         setupCollectionview()
@@ -67,12 +74,12 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
         let img = Imagens()
         guard let foto = foto.pngData() else { return }
         img.imagem = foto
-        guard let estado = contatoModel?.state() else { return }
+        let estado = viewModel.state()
         if estado == .insert {
-            contatoSelecionado?.imagens.append(img)
+            viewModel.contatoSelecionado?.imagens.append(img)
         } else {
             try! realm.write {
-                contatoSelecionado?.imagens.append(img)
+                viewModel.contatoSelecionado?.imagens.append(img)
             }
         }
         collectionViewNewContato.reloadData()
@@ -95,7 +102,6 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
         imagePerfil.layer.cornerRadius = imagePerfil.frame.width / 2
         imagePerfil.layer.borderColor = UIColor.lightGray.cgColor
         imagePerfil.layer.borderWidth = 1
-        
         buttonAdicionar.layer.cornerRadius = 5
         buttonAdicionar.layer.masksToBounds = true
     }
@@ -105,8 +111,7 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
     }
     
     func carregaDados() {
-        contatoSelecionado = contatoModel?.contatoSeleicionado
-        guard let contato = contatoSelecionado else { return }
+        guard let contato = viewModel.contatoSelecionado else { return }
         guard let imagem = UIImage(data: contato.imagemPerfil!) else { return }
         imagePerfil.image = imagem
         textNome.text = contato.nome
@@ -115,19 +120,21 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
     
     // MARK: IBActions
     @IBAction func buttonSalvar(_ sender: UIButton) {
-        guard let nome = textNome.text, let sobreNome = textSobrenome.text, let imagemPerfil = imagePerfil.image?.pngData() else { return }
+//        guard let nome = textNome.text, let sobreNome = textSobrenome.text, let imagemPerfil = imagePerfil.image?.pngData() else { return }
         
-        guard let estado = contatoModel?.state(), let contato = contatoSelecionado else { return }
+        guard let contato = viewModel.contatoSelecionado else { return }
+        let estado = viewModel.state()
+        
         if estado == .insert {
-            contato.nome = nome
-            contato.sobreNome = sobreNome
-            contato.imagemPerfil = imagemPerfil
+            contato.nome = textNome.text
+            contato.sobreNome = textSobrenome.text
+            contato.imagemPerfil = imagePerfil.image?.pngData()
             RealmDataSource().insertContato(contato)
         } else {
             try! realm.write {
-                contato.nome = nome
-                contato.sobreNome = sobreNome
-                contato.imagemPerfil = imagemPerfil
+                contato.nome = textNome.text
+                contato.sobreNome = textSobrenome.text
+                contato.imagemPerfil = imagePerfil.image?.pngData()
             }
         }
         self.setupRealm?()
@@ -152,7 +159,7 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
 extension NewContatoViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let index = contatoSelecionado?.imagens.count ?? 0
+        let index = viewModel.contatoSelecionado?.imagens.count ?? 0
         
         if (index == indexPath.row) {
             let menu = ImagePerfil().menuDeOpcoes { (opcao) in
@@ -166,18 +173,18 @@ extension NewContatoViewController: UICollectionViewDelegate {
 
 extension NewContatoViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let contato = contatoSelecionado else { return 0}
+        guard let contato = viewModel.contatoSelecionado else { return 0}
         return contato.imagens.count + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let celula = collectionViewNewContato.dequeueReusableCell(withReuseIdentifier: ContatoCollectionViewCell.identifier(), for: indexPath) as? ContatoCollectionViewCell {
-            let index = contatoSelecionado?.imagens.count ?? 0
+            let index = viewModel.contatoSelecionado?.imagens.count ?? 0
             
             if index == indexPath.row {
                 celula.personalizeCell()
                 //UIImage(systemName: "folder.badge.plus")
-            } else if let contato = contatoSelecionado {
+            } else if let contato = viewModel.contatoSelecionado {
                 let imagem = UIImage(data: contato.imagens[indexPath.row].imagem)
                 celula.imageviewCelula.image = imagem
             }

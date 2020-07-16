@@ -21,6 +21,4 @@ class HomeViewModel {
         let listaContatos = Array(results)
         return listaContatos
     }
-    
-    
 }
