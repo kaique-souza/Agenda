@@ -14,22 +14,17 @@ enum addFoto {
     case collectionViewl
 }
 
-enum estadoTela {
-    case update
-    case insert
-}
-
 // MARK: - typealias
 typealias setup = () -> Void
 
 class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
     
     // MARK: - Atributos
-    var imagePicker = ImagePerfilViewModel()
+    var imagePicker = ImagePerfil()
     var setupRealm: setup?
+    var contatoModel: NewContatoViewModel?
     var contatoSelecionado: Contato?
     var origem: addFoto?
-    var estadoTela: estadoTela?
 
     // MARK: - Outlets
     @IBOutlet weak var collectionViewNewContato: UICollectionView!
@@ -41,9 +36,9 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
     // MARK: - life of cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        state()
-        arredondaComponentes()
+        contatoSelecionado = contatoModel?.contatoSeleicionado
         carregaDados()
+        arredondaComponentes()
         setupCollectionview()
     }
     
@@ -55,16 +50,6 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
         collectionViewNewContato.register(UINib(nibName: String(describing: ContatoCollectionViewCell.self), bundle: nil), forCellWithReuseIdentifier: ContatoCollectionViewCell.identifier())
         collectionViewNewContato.reloadData()
     }
-    
-    func state(){
-        if contatoSelecionado == nil {
-            contatoSelecionado = Contato(nome: "", sobrenome: "", imagemPerfil: Data())
-            estadoTela = .insert
-        } else {
-            estadoTela = .update
-        }
-    }
-    
     
     func imagePickerFotoSelecionada (_ foto: UIImage) {
         switch origem {
@@ -82,16 +67,13 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
         let img = Imagens()
         guard let foto = foto.pngData() else { return }
         img.imagem = foto
-        
-        switch estadoTela {
-        case .update:
+        guard let estado = contatoModel?.state() else { return }
+        if estado == .insert {
+            contatoSelecionado?.imagens.append(img)
+        } else {
             try! realm.write {
                 contatoSelecionado?.imagens.append(img)
             }
-        case .insert:
-            contatoSelecionado?.imagens.append(img)
-        default:
-            print(Error.self)
         }
         collectionViewNewContato.reloadData()
     }
@@ -99,7 +81,7 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
     func mostrarMultimidia(_ opcao:MenuOpcoes) {
         let multimidia = UIImagePickerController()
         multimidia.delegate = imagePicker
-        
+
         if opcao == .camera && UIImagePickerController.isSourceTypeAvailable(.camera) {
             multimidia.sourceType = .camera
         }
@@ -116,7 +98,6 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
         
         buttonAdicionar.layer.cornerRadius = 5
         buttonAdicionar.layer.masksToBounds = true
-        
     }
     
     func encerraTelaNovoContato() {
@@ -124,6 +105,7 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
     }
     
     func carregaDados() {
+        contatoSelecionado = contatoModel?.contatoSeleicionado
         guard let contato = contatoSelecionado else { return }
         guard let imagem = UIImage(data: contato.imagemPerfil!) else { return }
         imagePerfil.image = imagem
@@ -134,21 +116,19 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
     // MARK: IBActions
     @IBAction func buttonSalvar(_ sender: UIButton) {
         guard let nome = textNome.text, let sobreNome = textSobrenome.text, let imagemPerfil = imagePerfil.image?.pngData() else { return }
-        guard let contato = contatoSelecionado else { return }
-        switch estadoTela {
-        case .insert:
+        
+        guard let estado = contatoModel?.state(), let contato = contatoSelecionado else { return }
+        if estado == .insert {
             contato.nome = nome
             contato.sobreNome = sobreNome
             contato.imagemPerfil = imagemPerfil
             RealmDataSource().insertContato(contato)
-        case .update:
+        } else {
             try! realm.write {
                 contato.nome = nome
                 contato.sobreNome = sobreNome
                 contato.imagemPerfil = imagemPerfil
             }
-        default:
-            print(Error.self)
         }
         self.setupRealm?()
         encerraTelaNovoContato()
@@ -160,7 +140,7 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
     
     
     @IBAction func adicionar(_ sender: Any) {
-        let menu = ImagePerfilViewModel().menuDeOpcoes { (opcao) in
+        let menu = ImagePerfil().menuDeOpcoes { (opcao) in
             self.origem = .buttonAdicionar
             self.mostrarMultimidia(opcao)
         }
@@ -175,7 +155,7 @@ extension NewContatoViewController: UICollectionViewDelegate {
         let index = contatoSelecionado?.imagens.count ?? 0
         
         if (index == indexPath.row) {
-            let menu = ImagePerfilViewModel().menuDeOpcoes { (opcao) in
+            let menu = ImagePerfil().menuDeOpcoes { (opcao) in
                 self.origem = .collectionViewl
                 self.mostrarMultimidia(opcao)
             }

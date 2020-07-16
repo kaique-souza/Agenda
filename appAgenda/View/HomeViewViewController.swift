@@ -11,7 +11,8 @@ import RealmSwift
 
 class HomeViewViewController: UIViewController {
     // MARK: - Atributs
-    var listaContatos: Array<Contato> = []
+    var listaContatos: [Contato] = []
+    var viewmodel = HomeViewModel()
     
     // MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
@@ -32,15 +33,14 @@ class HomeViewViewController: UIViewController {
     }
     
     func setupRealm() {
-        let realm = try! Realm()
-        let results = realm.objects(Contato.self)
-        listaContatos = Array(results)
+        listaContatos  = viewmodel.setupRealm()
         tableView.reloadData()
     }
     
     func instatiateCell(_ contato: Contato? = nil) {
         let controller = NewContatoViewController(nibName: String(describing: NewContatoViewController.self), bundle: nil)
-        controller.contatoSelecionado = contato
+        controller.contatoModel = NewContatoViewModel(contato)
+//        controller.contatoSelecionado = controller.contatoModel?.contatoSeleicionado
         controller.setupRealm = self.setupRealm
         present(controller, animated: true, completion: nil)
     }

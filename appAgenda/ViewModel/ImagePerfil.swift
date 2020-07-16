@@ -17,17 +17,17 @@ enum MenuOpcoes{
     case cancelar
 }
 
-class ImagePerfilViewModel: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ImagePerfil: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     // MARK: - Atributos
     var delegate: imagePickerFotoSelecionada?
     
     // MARK: - Metodos
      func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        let foto = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
-        delegate?.imagePickerFotoSelecionada(foto)
-        picker.dismiss(animated: true, completion: nil)
-    }
+         let foto = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+         delegate?.imagePickerFotoSelecionada(foto)
+         picker.dismiss(animated: true, completion: nil)
+     }
     
      func menuDeOpcoes(completion:@escaping(_ opcao:MenuOpcoes) -> Void) -> UIAlertController {
            let menu = UIAlertController(title: "Menu", message: "escolha uma das opções abaixo!", preferredStyle: .actionSheet)
@@ -46,8 +46,5 @@ class ImagePerfilViewModel: NSObject, UIImagePickerControllerDelegate, UINavigat
            
            return menu
        }
-    
-    
-    
-
 }
+
