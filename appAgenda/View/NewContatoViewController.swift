@@ -74,7 +74,7 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
         let img = Imagens()
         guard let foto = foto.pngData() else { return }
         img.imagem = foto
-        let estado = viewModel.state()
+        let estado = viewModel.state
         if estado == .insert {
             viewModel.contatoSelecionado?.imagens.append(img)
         } else {
@@ -123,7 +123,7 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
 //        guard let nome = textNome.text, let sobreNome = textSobrenome.text, let imagemPerfil = imagePerfil.image?.pngData() else { return }
         
         guard let contato = viewModel.contatoSelecionado else { return }
-        let estado = viewModel.state()
+        let estado = viewModel.state
         
         if estado == .insert {
             contato.nome = textNome.text

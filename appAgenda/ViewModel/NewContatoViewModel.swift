@@ -17,26 +17,21 @@ enum estadoTela {
 class NewContatoViewModel {
     // MARK: - Attributes
     var contatoSelecionado: Contato?
+    var state: estadoTela?
     
     // MARK: - Constructor
     init(_ contato: Contato? = nil) {
-        checkContact(contato)
+        self.checkContact(contato)
     }
     
     // MARK: - methods
     func checkContact(_ contato: Contato?) {
         if contato == nil {
             contatoSelecionado = Contato(nome: "", sobrenome: "", imagemPerfil: Data())
+            state = .insert
         } else {
             contatoSelecionado = contato
+            state = .update
         }
      }
-    
-    func state () -> estadoTela{
-        if contatoSelecionado == nil {
-            return .insert
-        } else {
-            return .update
-        }
-    }
 }
