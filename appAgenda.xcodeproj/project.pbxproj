@@ -15,7 +15,6 @@
 		6B677C4C24B5ECEE005C2CF2 /* NewContatoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B677C4A24B5ECEE005C2CF2 /* NewContatoViewController.swift */; };
 		6B677C4D24B5ECEE005C2CF2 /* NewContatoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B677C4B24B5ECEE005C2CF2 /* NewContatoViewController.xib */; };
 		6B677C4F24B60710005C2CF2 /* ImagePerfil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B677C4E24B60710005C2CF2 /* ImagePerfil.swift */; };
-		6B677C5124B61EBE005C2CF2 /* RealmDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B677C5024B61EBE005C2CF2 /* RealmDataSource.swift */; };
 		6B677C5324B670A0005C2CF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B677C5224B6709F005C2CF2 /* AppDelegate.swift */; };
 		6B9AB14D24B4DCCB00E39124 /* user_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B9AB14C24B4DCCB00E39124 /* user_image.png */; };
 		6B9AB15024B4E32100E39124 /* ContatoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9AB14E24B4E32100E39124 /* ContatoCollectionViewCell.swift */; };
@@ -42,7 +41,6 @@
 		6B677C4A24B5ECEE005C2CF2 /* NewContatoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewContatoViewController.swift; sourceTree = "<group>"; };
 		6B677C4B24B5ECEE005C2CF2 /* NewContatoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewContatoViewController.xib; sourceTree = "<group>"; };
 		6B677C4E24B60710005C2CF2 /* ImagePerfil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePerfil.swift; sourceTree = "<group>"; };
-		6B677C5024B61EBE005C2CF2 /* RealmDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDataSource.swift; sourceTree = "<group>"; };
 		6B677C5224B6709F005C2CF2 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6B9AB14C24B4DCCB00E39124 /* user_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_image.png; sourceTree = "<group>"; };
 		6B9AB14E24B4E32100E39124 /* ContatoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContatoCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -123,7 +121,6 @@
 				6F21B08E24BF7DC300AE3EAB /* HomeViewModel.swift */,
 				6F21B09024BF7DE000AE3EAB /* NewContatoViewModel.swift */,
 				6B677C4E24B60710005C2CF2 /* ImagePerfil.swift */,
-				6B677C5024B61EBE005C2CF2 /* RealmDataSource.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -324,7 +321,6 @@
 				6F21B08F24BF7DC300AE3EAB /* HomeViewModel.swift in Sources */,
 				6B677C5324B670A0005C2CF2 /* AppDelegate.swift in Sources */,
 				6BD4B6D224B3C99900581EB1 /* HomeViewViewController.swift in Sources */,
-				6B677C5124B61EBE005C2CF2 /* RealmDataSource.swift in Sources */,
 				6B677C4C24B5ECEE005C2CF2 /* NewContatoViewController.swift in Sources */,
 				6B677C4F24B60710005C2CF2 /* ImagePerfil.swift in Sources */,
 				6F21B09124BF7DE000AE3EAB /* NewContatoViewModel.swift in Sources */,

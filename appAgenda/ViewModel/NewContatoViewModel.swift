@@ -34,4 +34,41 @@ class NewContatoViewModel {
             state = .update
         }
      }
+    
+    func addImage(_ foto: UIImage){
+        let img = Imagens()
+        guard let foto = foto.pngData() else { return }
+        img.imagem = foto
+        
+        guard let contato = contatoSelecionado else { return }
+        if state == .insert {
+            contato.imagens.append(img)
+        } else {
+            updateContato(contatoSelecionado?.nome, contatoSelecionado?.sobreNome, contatoSelecionado?.imagemPerfil, img)
+        }
+    }
+    func insertContato(_ nome: String?, _ sobrenome: String?, _ ImagemPerfil: Data?){
+        contatoSelecionado?.nome = nome
+        contatoSelecionado?.sobreNome = sobrenome
+        contatoSelecionado?.imagemPerfil = ImagemPerfil
+        //contatoSelecionado?.imagens.append(imagens)
+        
+        guard let contato = contatoSelecionado else { return }
+        
+        realm.beginWrite()
+        realm.add(contato)
+        try! realm.commitWrite()
+    }
+    
+    func updateContato(_ nome: String?, _ sobrenome: String?, _ ImagemPerfil: Data?, _ imagens: Imagens? = nil) {
+         try! realm.write {
+            contatoSelecionado?.nome = nome
+            contatoSelecionado?.sobreNome = sobrenome
+            contatoSelecionado?.imagemPerfil = ImagemPerfil
+            if let imagens = imagens {
+                contatoSelecionado?.imagens.append(imagens)
+            }
+         }
+     }
+    
 }

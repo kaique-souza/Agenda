@@ -35,11 +35,8 @@ class HomeTableViewCell: UITableViewCell {
         
         labelNomeCompleto.text = "\(nome) \(sobreNome)"
         
-    
-        
         guard let imagem = UIImage(data: contato.imagemPerfil!) else { return }
         imagePerfil.image = imagem
-        
         
         fotmatViewImagePerfil()
         setupCollectionView()

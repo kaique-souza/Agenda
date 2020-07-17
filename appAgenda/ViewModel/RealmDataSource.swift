@@ -19,9 +19,7 @@ class RealmDataSource: NSObject {
         try! realm.commitWrite()
     }
     
-//    func updateContato(_ contato: Contato){
-//       
-//    }
+
     
 //    func consulta(){
 //        let contatos = realm.objects(Contato.self)
