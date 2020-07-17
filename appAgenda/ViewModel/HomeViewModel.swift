@@ -11,20 +11,18 @@ import RealmSwift
 
 class HomeViewModel {
     
+    let DataSource = RealmDataSource.SourceRealm
+    
     init() {
         
     }
     
     func setupRealm() -> [Contato]{
-        let realm = try! Realm()
-        let results = realm.objects(Contato.self)
-        let listaContatos = Array(results)
-        return listaContatos
+        return DataSource.listContact()
     }
     
+    
     func deleteContato (_ contato: Contato) {
-        try! realm.write {
-            realm.delete(contato)
-        }
+        DataSource.realmDelete(contato)
     }
 }
