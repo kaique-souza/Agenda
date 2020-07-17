@@ -72,9 +72,7 @@ extension HomeViewViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         DispatchQueue.main.async {
             let contato = realm.objects(Contato.self)
-            try! realm.write{
-                realm.delete(contato[indexPath.row])
-            }
+            self.viewmodel.deleteContato(contato[indexPath.row])
             self.listaContatos.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .fade)
         }

@@ -21,4 +21,10 @@ class HomeViewModel {
         let listaContatos = Array(results)
         return listaContatos
     }
+    
+    func deleteContato (_ contato: Contato) {
+        try! realm.write {
+            realm.delete(contato)
+        }
+    }
 }

@@ -27,6 +27,7 @@
 		6F21B08F24BF7DC300AE3EAB /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F21B08E24BF7DC300AE3EAB /* HomeViewModel.swift */; };
 		6F21B09124BF7DE000AE3EAB /* NewContatoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F21B09024BF7DE000AE3EAB /* NewContatoViewModel.swift */; };
 		6F21B09524C0E6B100AE3EAB /* Contato.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F21B09424C0E6B100AE3EAB /* Contato.swift */; };
+		6FCC8BCA24C21B2300C9B3E8 /* RealmDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCC8BC924C21B2300C9B3E8 /* RealmDataSource.swift */; };
 		9A54D4B6FDC0EB294C09F60B /* Pods_appAgenda.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F40ABFF408A8436011EE919 /* Pods_appAgenda.framework */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +54,7 @@
 		6F21B08E24BF7DC300AE3EAB /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		6F21B09024BF7DE000AE3EAB /* NewContatoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewContatoViewModel.swift; sourceTree = "<group>"; };
 		6F21B09424C0E6B100AE3EAB /* Contato.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Contato.swift; path = appAgenda/Model/Contato.swift; sourceTree = SOURCE_ROOT; };
+		6FCC8BC924C21B2300C9B3E8 /* RealmDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDataSource.swift; sourceTree = "<group>"; };
 		9F40ABFF408A8436011EE919 /* Pods_appAgenda.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_appAgenda.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B192E70869FDEAC608040EEE /* Pods-appAgenda.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-appAgenda.debug.xcconfig"; path = "Target Support Files/Pods-appAgenda/Pods-appAgenda.debug.xcconfig"; sourceTree = "<group>"; };
 		F675EAE9C10E17A828E12741 /* Pods-appAgenda.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-appAgenda.release.xcconfig"; path = "Target Support Files/Pods-appAgenda/Pods-appAgenda.release.xcconfig"; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				6B677C5224B6709F005C2CF2 /* AppDelegate.swift */,
+				6FCC8BC824C21AF700C9B3E8 /* DataBase */,
 				6F21B09624C0E76A00AE3EAB /* Model */,
 				6BD4B6CB24B3C41A00581EB1 /* ViewModel */,
 				6BD4B6CC24B3C42500581EB1 /* View */,
@@ -154,6 +157,14 @@
 				6F21B09424C0E6B100AE3EAB /* Contato.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		6FCC8BC824C21AF700C9B3E8 /* DataBase */ = {
+			isa = PBXGroup;
+			children = (
+				6FCC8BC924C21B2300C9B3E8 /* RealmDataSource.swift */,
+			);
+			path = DataBase;
 			sourceTree = "<group>";
 		};
 		BFA41FB0CF54DC7946FBA39B /* Frameworks */ = {
@@ -316,6 +327,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F21B09524C0E6B100AE3EAB /* Contato.swift in Sources */,
+				6FCC8BCA24C21B2300C9B3E8 /* RealmDataSource.swift in Sources */,
 				6BB1429E24B3FB730065E92E /* HomeTableViewCell.swift in Sources */,
 				6B0FFB6F24B37F7F002F336E /* ViewController.swift in Sources */,
 				6F21B08F24BF7DC300AE3EAB /* HomeViewModel.swift in Sources */,
