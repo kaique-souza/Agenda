@@ -10,12 +10,12 @@ import UIKit
 import RealmSwift
 
 class Contato: Object {
-    
+
     @objc dynamic var nome: String? = ""
     @objc dynamic var sobreNome: String? = ""
-    @objc dynamic var imagemPerfil: Data? = nil
+    @objc dynamic var imagemPerfil: Data?
     var imagens = List<Imagens>()
-    
+
     convenience init(nome: String, sobrenome: String, imagemPerfil: Data) {
         self.init()
         self.nome = nome
@@ -24,7 +24,6 @@ class Contato: Object {
     }
 }
 
-class Imagens: Object{
+class Imagens: Object {
     @objc dynamic var imagem: Data = Data()
 }
-

@@ -9,21 +9,21 @@
 import UIKit
 
 // MARK: - Enum
-enum addFoto {
+enum AddFoto {
     case buttonAdicionar
     case collectionViewl
 }
 
 // MARK: - typealias
-typealias setup = () -> Void
+typealias Setup = () -> Void
 
 class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
     
     // MARK: - Atributos
     var imagePicker = ImagePerfil()
-    var setupRealm: setup?
+    var setupRealm: Setup?
     var viewModel: NewContatoViewModel
-    var origem: addFoto?
+    var origem: AddFoto?
 
     // MARK: - Outlets
     @IBOutlet weak var collectionViewNewContato: UICollectionView!
@@ -54,7 +54,9 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
         imagePicker.delegate = self 
         collectionViewNewContato.delegate = self
         collectionViewNewContato.dataSource = self
-        collectionViewNewContato.register(UINib(nibName: String(describing: ContatoCollectionViewCell.self), bundle: nil), forCellWithReuseIdentifier: ContatoCollectionViewCell.identifier())
+        collectionViewNewContato.register(UINib(nibName: String(describing: ContatoCollectionViewCell.self),
+                                                bundle: nil),
+                                          forCellWithReuseIdentifier: ContatoCollectionViewCell.identifier())
         collectionViewNewContato.reloadData()
     }
     
@@ -66,7 +68,6 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
             viewModel.addImage(foto)
         default:
             print(Error.self)
-            break
         }
         collectionViewNewContato.reloadData()
     }
@@ -77,8 +78,7 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
 
         if opcao == .camera && UIImagePickerController.isSourceTypeAvailable(.camera) {
             multimidia.sourceType = .camera
-        }
-        else {
+        } else {
             multimidia.sourceType = .photoLibrary
         }
         self.present(multimidia, animated: true, completion: nil)
@@ -107,7 +107,6 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
     // MARK: IBActions
     @IBAction func buttonSalvar(_ sender: UIButton) {
         let estado = viewModel.state
-        
         if estado == .insert {
             viewModel.insertContato(textNome.text, textSobrenome.text, imagePerfil.image?.pngData())
         } else {
@@ -120,8 +119,7 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
     @IBAction func buttonCancelar(_ sender: UIButton) {
         encerraTelaNovoContato()
     }
-    
-    
+
     @IBAction func adicionar(_ sender: Any) {
         let menu = ImagePerfil().menuDeOpcoes { (opcao) in
             self.origem = .buttonAdicionar
@@ -134,10 +132,8 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
 // MARK: - Extensions
 extension NewContatoViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
         let index = viewModel.contatoSelecionado?.imagens.count ?? 0
-        
-        if (index == indexPath.row) {
+            if (index == indexPath.row) {
             let menu = ImagePerfil().menuDeOpcoes { (opcao) in
                 self.origem = .collectionViewl
                 self.mostrarMultimidia(opcao)
@@ -153,10 +149,12 @@ extension NewContatoViewController: UICollectionViewDataSource {
         return contato.imagens.count + 1
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let celula = collectionViewNewContato.dequeueReusableCell(withReuseIdentifier: ContatoCollectionViewCell.identifier(), for: indexPath) as? ContatoCollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if let celula = collectionViewNewContato.dequeueReusableCell(
+            withReuseIdentifier: ContatoCollectionViewCell.identifier(),
+                                        for: indexPath) as? ContatoCollectionViewCell {
             let index = viewModel.contatoSelecionado?.imagens.count ?? 0
-          
             if index == indexPath.row {
                 celula.personalizeCell()
 //                UIImage(systemName: "folder.badge.plus")

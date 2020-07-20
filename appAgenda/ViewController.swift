@@ -15,7 +15,7 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var labelteste: UILabel!
     @IBOutlet weak var labelIdade: UILabel!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 //        let contatoUm = Contato()
@@ -25,7 +25,6 @@ class ViewController: UIViewController {
 //        realm.beginWrite()
 //        realm.add(contatoUm)
 //        try! realm.commitWrite()
-        
 //        let contato = realm.objects(Contato.self)
 //
 //        for pessoa in contato {
@@ -35,10 +34,6 @@ class ViewController: UIViewController {
 //            realm.beginWrite()
 //            realm.delete(realm.objects(Contato.self))
 //            try! realm.commitWrite()
-                   
 //        }
     }
-
-
 }
-

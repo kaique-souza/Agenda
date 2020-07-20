@@ -46,41 +46,39 @@ class HomeTableViewCell: UITableViewCell {
         return "CelulaContatos"
     }
     
-    func fotmatViewImagePerfil(){
+    func fotmatViewImagePerfil() {
         viewImagePerfil.layer.cornerRadius = viewImagePerfil.frame.width / 2
         viewImagePerfil.layer.borderWidth = 1
         viewImagePerfil.layer.borderColor = UIColor.lightGray.cgColor
     }
     
-    func setupCollectionView(){
+    func setupCollectionView() {
         collectionViewContatos.delegate =  self
         collectionViewContatos.dataSource =  self
-        collectionViewContatos.register(UINib(nibName: String(describing: ContatoCollectionViewCell.self), bundle: nil), forCellWithReuseIdentifier: "CelulaCollectionViewContatos")
+        collectionViewContatos.register(UINib(nibName:
+            String(describing: ContatoCollectionViewCell.self), bundle: nil), forCellWithReuseIdentifier: "CelulaCollectionViewContatos")
         collectionViewContatos.reloadData()
     }
 }
 
-extension HomeTableViewCell: UICollectionViewDelegate{
-    
+extension HomeTableViewCell: UICollectionViewDelegate {
 }
 
-extension HomeTableViewCell: UICollectionViewDataSource{
+extension HomeTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let contato = contatoSelecionado else { return 0}
         return contato.imagens.count
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        if let celula = collectionViewContatos.dequeueReusableCell(withReuseIdentifier: ContatoCollectionViewCell.identifier(), for: indexPath) as? ContatoCollectionViewCell, let imagens = contatoSelecionado?.imagens[indexPath.row] {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if let celula = collectionViewContatos.dequeueReusableCell(
+            withReuseIdentifier: ContatoCollectionViewCell.identifier(), for: indexPath)
+            as? ContatoCollectionViewCell, let imagens = contatoSelecionado?.imagens[indexPath.row] {
             celula.backgroundColor = UIColor.black
             celula.setupCelula(imagens)
             return celula
         }
        return ContatoCollectionViewCell()
     }
-
-
 }
-
-

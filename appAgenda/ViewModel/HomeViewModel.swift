@@ -10,19 +10,17 @@ import UIKit
 import RealmSwift
 
 class HomeViewModel {
-    
-    let DataSource = RealmDataSource.SourceRealm
-    
+
+    let dataSource = RealmDataSource.SourceRealm
+
     init() {
-        
     }
-    
-    func setupRealm() -> [Contato]{
-        return DataSource.listContact()
+
+    func setupRealm() -> [Contato] {
+        return dataSource.listContact()
     }
-    
-    
+
     func deleteContato (_ contato: Contato) {
-        DataSource.realmDelete(contato)
+        dataSource.realmDelete(contato)
     }
 }

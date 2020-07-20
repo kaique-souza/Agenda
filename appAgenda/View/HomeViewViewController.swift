@@ -56,12 +56,10 @@ extension HomeViewViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let celula = tableView.dequeueReusableCell(withIdentifier: HomeTableViewCell.identifier(), for: indexPath) as! HomeTableViewCell
         let contato = listaContatos[indexPath.row]
         celula.contatoSelecionado = contato
         celula.setupCelula(contato)
-        
         return celula
     }
     
@@ -69,7 +67,8 @@ extension HomeViewViewController: UITableViewDataSource {
         instatiateCell(listaContatos[indexPath.row])
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle,
+                   forRowAt indexPath: IndexPath) {
         DispatchQueue.main.async {
             let contato = realm.objects(Contato.self)
             self.viewmodel.deleteContato(contato[indexPath.row])
@@ -80,7 +79,6 @@ extension HomeViewViewController: UITableViewDataSource {
 }
 
 extension HomeViewViewController: UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Lista de Contatos"
     }

@@ -20,15 +20,13 @@ class ContatoCollectionViewCell: UICollectionViewCell {
         return "CelulaCollectionViewContatos"
     }
     
-    func setupCelula(_ imagens: Imagens){
+    func setupCelula(_ imagens: Imagens) {
         guard let imagem = UIImage(data: imagens.imagem) else { return }
         imageviewCelula.image = imagem
     }
     
-    func personalizeCell(){
+    func personalizeCell() {
         imageviewCelula.contentMode = .center
         imageviewCelula.image = UIImage(named: "icons8-adicionar-imagem-30")
     }
-   
-
 }

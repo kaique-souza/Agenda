@@ -15,10 +15,9 @@ class RealmDataSource {
     static let SourceRealm = RealmDataSource()
     
     init() {
-        
     }
     
-    func realmInsert(_ contato: Contato){
+    func realmInsert(_ contato: Contato) {
            realm.beginWrite()
            realm.add(contato)
            try! realm.commitWrite()
@@ -36,7 +35,7 @@ class RealmDataSource {
         }
     }
     
-    func listContact() -> [Contato]{
+    func listContact() -> [Contato] {
         let realm = try! Realm()
         let results = realm.objects(Contato.self)
         let listaContatos = Array(results)

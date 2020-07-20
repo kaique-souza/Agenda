@@ -11,10 +11,6 @@ import UIKit
 class ListaViewController: UIViewController {
 
     override func viewDidLoad() {
-        super.viewDidLoad()
-
-    
+        super.viewDidLoad()        
     }
-
-
 }

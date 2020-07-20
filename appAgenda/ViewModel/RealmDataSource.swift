@@ -11,16 +11,13 @@ import RealmSwift
 
 class RealmDataSource: NSObject {
     let realm = try! Realm()
-    
+
     // MARK: - Metodos
-    func insertContato(_ contato: Contato){
+    func insertContato(_ contato: Contato) {
         realm.beginWrite()
         realm.add(contato)
         try! realm.commitWrite()
     }
-    
-
-    
 //    func consulta(){
 //        let contatos = realm.objects(Contato.self)
 //        for contato in contatos{

@@ -10,38 +10,31 @@ import UIKit
 
 private let reuseIdentifier = "Cell"
 
-var Teste = ["Maria", "joao", "josefa"]
+//var Teste = ["Maria", "joao", "josefa"]
 
 class ListaContatosCollectionViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
-     
     }
-
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        
         return Teste.count
     }
 
-
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView,
+                                 numberOfItemsInSection section: Int) -> Int {
 
         return Teste.count
     }
 
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    override func collectionView(_ collectionView: UICollectionView,
+                                 cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-        
-        
-    
+
         return cell
     }
-
-    
 }

@@ -9,7 +9,7 @@
 import UIKit
 
 // MARK: - enum
-enum estadoTela {
+enum EstadoTela {
     case update
     case insert
 }
@@ -17,14 +17,14 @@ enum estadoTela {
 class NewContatoViewModel {
     // MARK: - Attributes
     var contatoSelecionado: Contato?
-    var state: estadoTela?
-    let DataSource = RealmDataSource.SourceRealm
-    
+    var state: EstadoTela?
+    let dataSource = RealmDataSource.SourceRealm
+
     // MARK: - Constructor
     init(_ contato: Contato? = nil) {
         self.checkContact(contato)
     }
-    
+
     // MARK: - methods
     func checkContact(_ contato: Contato?) {
         if contato == nil {
@@ -35,29 +35,31 @@ class NewContatoViewModel {
             state = .update
         }
      }
-    
-    func addImage(_ foto: UIImage){
-        let img = Imagens()
+
+    func addImage(_ foto: UIImage) {
+        let image = Imagens()
         guard let foto = foto.pngData() else { return }
-        img.imagem = foto
-        
+        image.imagem = foto
         guard let contato = contatoSelecionado else { return }
         if state == .insert {
-            contato.imagens.append(img)
+            contato.imagens.append(image)
         } else {
-            updateContato(contatoSelecionado?.nome, contatoSelecionado?.sobreNome, contatoSelecionado?.imagemPerfil, img)
+            updateContato(contatoSelecionado?.nome, contatoSelecionado?.sobreNome,
+                          contatoSelecionado?.imagemPerfil, image)
         }
     }
-    func insertContato(_ nome: String?, _ sobrenome: String?, _ ImagemPerfil: Data?){
+
+    func insertContato(_ nome: String?, _ sobrenome: String?, _ imagemPerfil: Data?) {
         contatoSelecionado?.nome = nome
         contatoSelecionado?.sobreNome = sobrenome
-        contatoSelecionado?.imagemPerfil = ImagemPerfil
+        contatoSelecionado?.imagemPerfil = imagemPerfil
         //contatoSelecionado?.imagens.append(imagens)
         guard let contato = contatoSelecionado else { return }
-        DataSource.realmInsert(contato)
+        dataSource.realmInsert(contato)
     }
 
-//    func updateContato(_ nome: String?, _ sobrenome: String?, _ ImagemPerfil: Data?, _ imagens: Imagens? = nil) {
+//    func updateContato(_ nome: String?, _ sobrenome: String?,
+//    _ ImagemPerfil: Data?, _ imagens: Imagens? = nil) {
 //         try! realm.write {
 //            contatoSelecionado?.nome = nome
 //            contatoSelecionado?.sobreNome = sobrenome
@@ -67,16 +69,15 @@ class NewContatoViewModel {
 //            }
 //         }
 //     }
-    
-    func updateContato(_ nome: String?, _ sobrenome: String?, _ ImagemPerfil: Data?, _ imagens: Imagens? = nil) {
+    func updateContato(_ nome: String?, _ sobrenome: String?,
+                       _ imagemPerfil: Data?, _ imagens: Imagens? = nil) {
         contatoSelecionado?.nome = nome
         contatoSelecionado?.sobreNome = sobrenome
-        contatoSelecionado?.imagemPerfil = ImagemPerfil
+        contatoSelecionado?.imagemPerfil = imagemPerfil
         if let imagens = imagens {
             contatoSelecionado?.imagens.append(imagens)
         }
         guard let contato = contatoSelecionado else { return }
-        
-    
+        dataSource.realmUpdate(contato)
     }
 }
