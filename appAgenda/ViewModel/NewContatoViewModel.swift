@@ -57,28 +57,26 @@ class NewContatoViewModel {
         DataSource.realmInsert(contato)
     }
 
-    func updateContato(_ nome: String?, _ sobrenome: String?, _ ImagemPerfil: Data?, _ imagens: Imagens? = nil) {
-         try! realm.write {
-            contatoSelecionado?.nome = nome
-            contatoSelecionado?.sobreNome = sobrenome
-            contatoSelecionado?.imagemPerfil = ImagemPerfil
-            if let imagens = imagens {
-                contatoSelecionado?.imagens.append(imagens)
-            }
-         }
-     }
-    
 //    func updateContato(_ nome: String?, _ sobrenome: String?, _ ImagemPerfil: Data?, _ imagens: Imagens? = nil) {
-//        contatoSelecionado?.nome = nome
-//                  contatoSelecionado?.sobreNome = sobrenome
-//                  contatoSelecionado?.imagemPerfil = ImagemPerfil
-//                  if let imagens = imagens {
-//                      contatoSelecionado?.imagens.append(imagens)
-//                  }
-//        guard let contato = contatoSelecionado else { return }
-//        realm.beginWrite()
-//        realm.add(contato, update: .modified)
-//        try! realm.commitWrite()
-//    }
+//         try! realm.write {
+//            contatoSelecionado?.nome = nome
+//            contatoSelecionado?.sobreNome = sobrenome
+//            contatoSelecionado?.imagemPerfil = ImagemPerfil
+//            if let imagens = imagens {
+//                contatoSelecionado?.imagens.append(imagens)
+//            }
+//         }
+//     }
     
+    func updateContato(_ nome: String?, _ sobrenome: String?, _ ImagemPerfil: Data?, _ imagens: Imagens? = nil) {
+        contatoSelecionado?.nome = nome
+        contatoSelecionado?.sobreNome = sobrenome
+        contatoSelecionado?.imagemPerfil = ImagemPerfil
+        if let imagens = imagens {
+            contatoSelecionado?.imagens.append(imagens)
+        }
+        guard let contato = contatoSelecionado else { return }
+        
+    
+    }
 }
