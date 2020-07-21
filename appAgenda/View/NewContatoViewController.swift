@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
 
 class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
     
@@ -124,7 +125,6 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
     }
     
     @IBAction func buttonCancelar(_ sender: UIButton) {
-        
         encerraTelaNovoContato()
     }
 

@@ -11,6 +11,7 @@ import UIKit
 protocol imagePickerFotoSelecionada {
     func imagePickerFotoSelecionada(_ foto: UIImage)
 }
+
 enum MenuOpcoes {
     case camera
     case galeria
@@ -32,7 +33,7 @@ class ImagePerfil: NSObject, UIImagePickerControllerDelegate, UINavigationContro
      func menuDeOpcoes(completion:@escaping(_ opcao:MenuOpcoes) -> Void) -> UIAlertController {
         let menu = UIAlertController(title: "Menu", message: "escolha uma das opções abaixo!",
                                         preferredStyle: .actionSheet)
-        let camera = UIAlertAction(title: "Tirar foto", style: .default) { ( camera ) in
+        let camera = UIAlertAction(title: Constantes.tirarFoto, style: .default) { ( camera ) in
             completion(.camera)
         }
            menu.addAction(camera)

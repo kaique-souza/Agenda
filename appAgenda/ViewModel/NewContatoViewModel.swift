@@ -41,7 +41,7 @@ class NewContatoViewModel {
 
     func addImage(_ foto: UIImage) {
         let image = Imagens()
-        guard let foto = foto.pngData() else { return }
+        guard let foto = foto.jpegData(compressionQuality: 0.7) else { return }
         image.imagem = foto
         guard let contato = contatoSelecionado else { return }
         if state == .insert {
@@ -97,3 +97,17 @@ class NewContatoViewModel {
         })
     }
 }
+
+//extension UIImage {
+//    enum JPEGQuality: CGFloat {
+//        case lowest  = 0
+//        case lows     = 0.25
+//        case medium  = 0.5
+//        case high    = 0.75
+//        case highest = 1
+//    }
+//
+//    func jpeg(_ jpegQuality: JPEGQuality) -> Data? {
+//        return jpegData(compressionQuality: jpegQuality.rawValue)
+//    }
+//}
