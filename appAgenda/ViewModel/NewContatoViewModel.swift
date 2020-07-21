@@ -7,14 +7,16 @@
 //
 
 import UIKit
-
-// MARK: - enum
-enum EstadoTela {
-    case update
-    case insert
-}
+import RealmSwift
 
 class NewContatoViewModel {
+    
+    // MARK: - enum
+    enum EstadoTela {
+        case update
+        case insert
+    }
+    
     // MARK: - Attributes
     var contatoSelecionado: Contato?
     var state: EstadoTela?
@@ -46,7 +48,12 @@ class NewContatoViewModel {
             contato.imagens.append(image)
         } else {
             updateContato(nome: contatoSelecionado?.nome, sobrenome: contatoSelecionado?.sobreNome,
-                          imagemPerfil: contatoSelecionado?.imagemPerfil, imagens: image)
+                          imagemPerfil: contatoSelecionado?.imagemPerfil,
+                          imagens: image) { (erro) in
+                            if erro != nil {
+                               print(erro!.localizedDescription)
+                            }
+            }
         }
     }
 
@@ -75,14 +82,18 @@ class NewContatoViewModel {
     }
     
     func updateContato(nome: String?, sobrenome: String?,
-                        imagemPerfil: Data?, imagens: Imagens? = nil) {
-        try! realm.write {
-            self.contatoSelecionado?.nome = nome
-            self.contatoSelecionado?.sobreNome = sobrenome
-            self.contatoSelecionado?.imagemPerfil = imagemPerfil
-            if let imagens = imagens {
-                self.contatoSelecionado?.imagens.append(imagens)
-            }
-        }
+                       imagemPerfil: Data?, imagens: Imagens? = nil,
+                       erro: @escaping(Error?) -> Void) {
+        guard let contato = contatoSelecionado else { return }
+        
+        self.dataSource.updateContato(nome: nome, sobrenome: sobrenome,
+                                    imagemPerfil: imagemPerfil, imagens: imagens,
+                                          contatoToUpdate: contato, erro: {(error) in
+                                            if error != nil {
+                                                erro(error?.localizedDescription as? Error)
+                                            } else {
+                                                erro(nil)
+                                            }
+        })
     }
 }

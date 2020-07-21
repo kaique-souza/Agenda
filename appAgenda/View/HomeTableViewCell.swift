@@ -18,7 +18,6 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var labelNomeCompleto: UILabel!
     @IBOutlet weak var collectionViewContatos: UICollectionView!
     
-    
     // MARK: - life of cycle
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -56,7 +55,8 @@ class HomeTableViewCell: UITableViewCell {
         collectionViewContatos.delegate =  self
         collectionViewContatos.dataSource =  self
         collectionViewContatos.register(UINib(nibName:
-            String(describing: ContatoCollectionViewCell.self), bundle: nil), forCellWithReuseIdentifier: "CelulaCollectionViewContatos")
+            String(describing: ContatoCollectionViewCell.self), bundle: nil),
+                                        forCellWithReuseIdentifier: "CelulaCollectionViewContatos")
         collectionViewContatos.reloadData()
     }
 }

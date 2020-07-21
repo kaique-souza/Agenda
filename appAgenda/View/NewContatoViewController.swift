@@ -108,12 +108,19 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
     @IBAction func buttonSalvar(_ sender: UIButton) {
         let estado = viewModel.state
         if estado == .insert {
-            viewModel.insertContato(nome: textNome.text, sobrenome: textSobrenome.text, imagemPerfil: imagePerfil.image?.pngData())
+            viewModel.insertContato(nome: textNome.text,
+                                    sobrenome: textSobrenome.text, imagemPerfil: imagePerfil.image?.pngData())
         } else {
-            viewModel.updateContato(nome: textNome.text, sobrenome: textSobrenome.text, imagemPerfil: imagePerfil.image?.pngData(), imagens: nil)
+            viewModel.updateContato(nome: textNome.text, sobrenome: textSobrenome.text,
+                                    imagemPerfil: imagePerfil.image?.pngData(),
+                                    imagens: nil, erro: {(error) in
+                                        if error != nil {
+                                            print(error!.localizedDescription)
+                                        } 
+                })
         }
         self.setupRealm?()
-        encerraTelaNovoContato()
+        self.encerraTelaNovoContato()
     }
     
     @IBAction func buttonCancelar(_ sender: UIButton) {

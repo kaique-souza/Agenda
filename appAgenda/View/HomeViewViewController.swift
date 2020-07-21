@@ -24,11 +24,12 @@ class HomeViewViewController: UIViewController {
         setupTableView()
     }
 
-    // Mark: - Metodos
+    // MARK: - Metodos
     func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register (UINib(nibName: String(describing: HomeTableViewCell.self), bundle: nil), forCellReuseIdentifier: HomeTableViewCell.identifier())
+        tableView.register(UINib(nibName: String(describing: HomeTableViewCell.self),
+                                  bundle: nil), forCellReuseIdentifier: HomeTableViewCell.identifier())
         tableView.reloadData()
     }
     
@@ -56,7 +57,9 @@ extension HomeViewViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let celula = tableView.dequeueReusableCell(withIdentifier: HomeTableViewCell.identifier(), for: indexPath) as! HomeTableViewCell
+        guard let celula = tableView.dequeueReusableCell(withIdentifier: HomeTableViewCell.identifier(),
+                                                         for: indexPath)
+            as? HomeTableViewCell else {return HomeTableViewCell()}
         let contato = listaContatos[indexPath.row]
         celula.contatoSelecionado = contato
         celula.setupCelula(contato)
@@ -70,7 +73,8 @@ extension HomeViewViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle,
                    forRowAt indexPath: IndexPath) {
         DispatchQueue.main.async {
-            let contato = realm.objects(Contato.self)
+            
+            let contato = self.viewmodel.setupRealm()
             self.viewmodel.deleteContato(contato[indexPath.row])
             self.listaContatos.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .fade)
