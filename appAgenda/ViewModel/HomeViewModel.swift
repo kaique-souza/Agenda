@@ -11,7 +11,7 @@ import RealmSwift
 
 class HomeViewModel {
 
-    let dataSource = RealmDataSource.SourceRealm
+    let dataSource = RealmDataSource.shared
 
     init() {
     }

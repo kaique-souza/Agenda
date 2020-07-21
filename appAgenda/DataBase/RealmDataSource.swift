@@ -12,7 +12,7 @@ import RealmSwift
 
 class RealmDataSource {
     
-    static let SourceRealm = RealmDataSource()
+    static let shared = RealmDataSource()
     
     init() {
     }
@@ -28,6 +28,18 @@ class RealmDataSource {
         realm.add(contato)
         try! realm.commitWrite()
     }
+    
+    
+    func updateContato(nome: String?, sobrenome: String?,
+                       imagemPerfil: Data?, imagens: Imagens? = nil, contatoToUpdate: Contato) {
+           try! realm.write {
+               contatoToUpdate.nome = nome
+               contatoToUpdate.imagemPerfil = imagemPerfil
+               if let imagens = imagens {
+                   contatoToUpdate.imagens.append(imagens)
+               }
+           }
+       }
     
     func realmDelete(_ contato: Contato) {
         try! realm.write {

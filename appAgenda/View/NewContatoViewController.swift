@@ -8,20 +8,20 @@
 
 import UIKit
 
-// MARK: - Enum
-enum AddFoto {
-    case buttonAdicionar
-    case collectionViewl
-}
-
-// MARK: - typealias
-typealias Setup = () -> Void
-
 class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
+    
+    // MARK: - Enum
+    enum AddFoto {
+        case buttonAdicionar
+        case collectionViewl
+    }
+    
+    // MARK: - typealias
+    typealias VoidCallback = () -> Void
     
     // MARK: - Atributos
     var imagePicker = ImagePerfil()
-    var setupRealm: Setup?
+    var setupRealm: VoidCallback?
     var viewModel: NewContatoViewModel
     var origem: AddFoto?
 
@@ -108,15 +108,16 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
     @IBAction func buttonSalvar(_ sender: UIButton) {
         let estado = viewModel.state
         if estado == .insert {
-            viewModel.insertContato(textNome.text, textSobrenome.text, imagePerfil.image?.pngData())
+            viewModel.insertContato(nome: textNome.text, sobrenome: textSobrenome.text, imagemPerfil: imagePerfil.image?.pngData())
         } else {
-            viewModel.updateContato(textNome.text, textSobrenome.text, imagePerfil.image?.pngData(), nil)
+            viewModel.updateContato(nome: textNome.text, sobrenome: textSobrenome.text, imagemPerfil: imagePerfil.image?.pngData(), imagens: nil)
         }
         self.setupRealm?()
         encerraTelaNovoContato()
     }
     
     @IBAction func buttonCancelar(_ sender: UIButton) {
+        
         encerraTelaNovoContato()
     }
 

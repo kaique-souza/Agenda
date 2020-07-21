@@ -18,8 +18,9 @@ class NewContatoViewModel {
     // MARK: - Attributes
     var contatoSelecionado: Contato?
     var state: EstadoTela?
-    let dataSource = RealmDataSource.SourceRealm
-
+    let dataSource = RealmDataSource.shared
+    var quantidadeImages = 0
+    
     // MARK: - Constructor
     init(_ contato: Contato? = nil) {
         self.checkContact(contato)
@@ -44,12 +45,12 @@ class NewContatoViewModel {
         if state == .insert {
             contato.imagens.append(image)
         } else {
-            updateContato(contatoSelecionado?.nome, contatoSelecionado?.sobreNome,
-                          contatoSelecionado?.imagemPerfil, image)
+            updateContato(nome: contatoSelecionado?.nome, sobrenome: contatoSelecionado?.sobreNome,
+                          imagemPerfil: contatoSelecionado?.imagemPerfil, imagens: image)
         }
     }
 
-    func insertContato(_ nome: String?, _ sobrenome: String?, _ imagemPerfil: Data?) {
+    func insertContato(nome: String?, sobrenome: String?, imagemPerfil: Data?) {
         contatoSelecionado?.nome = nome
         contatoSelecionado?.sobreNome = sobrenome
         contatoSelecionado?.imagemPerfil = imagemPerfil
@@ -69,15 +70,19 @@ class NewContatoViewModel {
 //            }
 //         }
 //     }
-    func updateContato(_ nome: String?, _ sobrenome: String?,
-                       _ imagemPerfil: Data?, _ imagens: Imagens? = nil) {
-        contatoSelecionado?.nome = nome
-        contatoSelecionado?.sobreNome = sobrenome
-        contatoSelecionado?.imagemPerfil = imagemPerfil
-        if let imagens = imagens {
-            contatoSelecionado?.imagens.append(imagens)
+    func removeImagens(indice: Int) {
+        contatoSelecionado?.imagens.removeLast()
+    }
+    
+    func updateContato(nome: String?, sobrenome: String?,
+                        imagemPerfil: Data?, imagens: Imagens? = nil) {
+        try! realm.write {
+            self.contatoSelecionado?.nome = nome
+            self.contatoSelecionado?.sobreNome = sobrenome
+            self.contatoSelecionado?.imagemPerfil = imagemPerfil
+            if let imagens = imagens {
+                self.contatoSelecionado?.imagens.append(imagens)
+            }
         }
-        guard let contato = contatoSelecionado else { return }
-        dataSource.realmUpdate(contato)
     }
 }
