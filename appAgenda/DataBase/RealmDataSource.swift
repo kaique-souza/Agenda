@@ -4,8 +4,6 @@
 //
 //  Created by Kaique de Souza Santos on 7/17/20.
 //  Copyright © 2020 Kaique Santos Souza. All rights reserved.
-//
-
 import Foundation
 import UIKit
 import RealmSwift
@@ -27,14 +25,16 @@ class RealmDataSource {
         return nil
     }
     
-    func realmInsert(_ contato: Contato) {
+    func realmInsert(_ contato: Contato, erro: @escaping(Error?) -> Void) {
         guard let realm = self.realm() else { return }
         do {
             realm.beginWrite()
             realm.add(contato)
             try realm.commitWrite()
-        } catch let erro {
-            print(erro.localizedDescription)
+            erro(nil)
+        } catch let error {
+            erro(error)
+            print(error.localizedDescription)
         }
     }
     

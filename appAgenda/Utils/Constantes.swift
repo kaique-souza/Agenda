@@ -7,8 +7,10 @@
 //
 
 struct Constantes {
+    static let menu = "menu"
     static let tirarFoto = "Tirar foto"
     static let galeria = "Galeria"
+    static let cancelar = "Cancelar"
+    static let mensagePickImage = "Escolha uma das opções abaixo!"
     
 }
-

@@ -108,20 +108,34 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
     // MARK: IBActions
     @IBAction func buttonSalvar(_ sender: UIButton) {
         let estado = viewModel.state
-        if estado == .insert {
+        
+        switch estado {
+        case .insert:
             viewModel.insertContato(nome: textNome.text,
-                                    sobrenome: textSobrenome.text, imagemPerfil: imagePerfil.image?.pngData())
-        } else {
+                                    sobrenome: textSobrenome.text,
+                                    imagemPerfil: imagePerfil.image?.jpegData(compressionQuality: 0.7),
+                                    erro: {(error) in
+                                        if error == nil {
+                                            self.setupRealm?()
+                                            self.encerraTelaNovoContato()
+                                        } else {
+                                            NSLog(error!.localizedDescription)
+                                        }
+            })
+        case .update:
             viewModel.updateContato(nome: textNome.text, sobrenome: textSobrenome.text,
-                                    imagemPerfil: imagePerfil.image?.pngData(),
-                                    imagens: nil, erro: {(error) in
-                                        if error != nil {
-                                            print(error!.localizedDescription)
-                                        } 
-                })
+                                imagemPerfil: imagePerfil.image?.jpegData(compressionQuality: 0.7),
+                                imagens: nil, erro: {(error) in
+                                    if error == nil {
+                                        self.setupRealm?()
+                                        self.encerraTelaNovoContato()
+                                    } else {
+                                        NSLog(error!.localizedDescription)
+                                    }
+            })
+        default:
+            break
         }
-        self.setupRealm?()
-        self.encerraTelaNovoContato()
     }
     
     @IBAction func buttonCancelar(_ sender: UIButton) {

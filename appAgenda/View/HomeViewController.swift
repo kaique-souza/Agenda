@@ -9,13 +9,23 @@
 import UIKit
 import RealmSwift
 
-class HomeViewViewController: UIViewController {
+class HomeViewController: UIViewController {
     // MARK: - Atributs
     var listaContatos: [Contato] = []
-    var viewmodel = HomeViewModel()
+    let viewmodel: HomeViewModel
     
     // MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
+    
+    // MARK: - Contructor
+    init(model: HomeViewModel = HomeViewModel()) {
+        self.viewmodel = model
+        super.init(nibName: String(describing: HomeViewController.self) , bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: - life of cycle
     override func viewDidLoad() {
@@ -51,7 +61,7 @@ class HomeViewViewController: UIViewController {
 }
 
 // MARK: - Extensions
-extension HomeViewViewController: UITableViewDataSource {
+extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return listaContatos.count
     }
@@ -82,7 +92,7 @@ extension HomeViewViewController: UITableViewDataSource {
     }
 }
 
-extension HomeViewViewController: UITableViewDelegate {
+extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Lista de Contatos"
     }

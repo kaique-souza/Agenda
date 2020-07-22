@@ -17,32 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        
-        let controller = HomeViewViewController(nibName: String(describing: HomeViewViewController.self),
-                                                bundle: nil)
-//        let controller = NewContatoViewController(nibName: "NewContatoViewController", bundle: nil)
+        let controller = HomeViewController()
         window?.rootViewController = controller
         window?.makeKeyAndVisible()
         return true
-    }
-
-    func applicationWillResignActive(_ application: UIApplication) {
-
-    }
-
-    func applicationDidEnterBackground(_ application: UIApplication) {
-
-    }
-
-    func applicationWillEnterForeground(_ application: UIApplication) {
-
-    }
-
-    func applicationDidBecomeActive(_ application: UIApplication) {
-
-    }
-
-    func applicationWillTerminate(_ application: UIApplication) {
-
     }
 }

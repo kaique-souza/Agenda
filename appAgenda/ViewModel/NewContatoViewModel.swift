@@ -21,7 +21,6 @@ class NewContatoViewModel {
     var contatoSelecionado: Contato?
     var state: EstadoTela?
     let dataSource = RealmDataSource.shared
-    var quantidadeImages = 0
     
     // MARK: - Constructor
     init(_ contato: Contato? = nil) {
@@ -44,26 +43,36 @@ class NewContatoViewModel {
         guard let foto = foto.jpegData(compressionQuality: 0.7) else { return }
         image.imagem = foto
         guard let contato = contatoSelecionado else { return }
-        if state == .insert {
+        
+        switch state {
+        case .insert:
             contato.imagens.append(image)
-        } else {
+        case .update:
             updateContato(nome: contatoSelecionado?.nome, sobrenome: contatoSelecionado?.sobreNome,
                           imagemPerfil: contatoSelecionado?.imagemPerfil,
                           imagens: image) { (erro) in
                             if erro != nil {
-                               print(erro!.localizedDescription)
+                                print(erro!.localizedDescription)
                             }
             }
+        default:
+            break
         }
     }
 
-    func insertContato(nome: String?, sobrenome: String?, imagemPerfil: Data?) {
+    func insertContato(nome: String?, sobrenome: String?, imagemPerfil: Data?,
+                       erro: @escaping(Error?) -> Void) {
         contatoSelecionado?.nome = nome
         contatoSelecionado?.sobreNome = sobrenome
         contatoSelecionado?.imagemPerfil = imagemPerfil
-        //contatoSelecionado?.imagens.append(imagens)
         guard let contato = contatoSelecionado else { return }
-        dataSource.realmInsert(contato)
+        dataSource.realmInsert(contato) { (error) in
+            if error == nil {
+                erro(nil)
+            } else {
+                erro(error)
+                NSLog("Erro ao inserir usuario")            }
+        }
     }
 
 //    func updateContato(_ nome: String?, _ sobrenome: String?,
@@ -77,9 +86,6 @@ class NewContatoViewModel {
 //            }
 //         }
 //     }
-    func removeImagens(indice: Int) {
-        contatoSelecionado?.imagens.removeLast()
-    }
     
     func updateContato(nome: String?, sobrenome: String?,
                        imagemPerfil: Data?, imagens: Imagens? = nil,
