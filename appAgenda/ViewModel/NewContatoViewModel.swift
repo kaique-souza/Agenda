@@ -71,21 +71,10 @@ class NewContatoViewModel {
                 erro(nil)
             } else {
                 erro(error)
-                NSLog("Erro ao inserir usuario")            }
+                NSLog(error!.localizedDescription)
+            }
         }
     }
-
-//    func updateContato(_ nome: String?, _ sobrenome: String?,
-//    _ ImagemPerfil: Data?, _ imagens: Imagens? = nil) {
-//         try! realm.write {
-//            contatoSelecionado?.nome = nome
-//            contatoSelecionado?.sobreNome = sobrenome
-//            contatoSelecionado?.imagemPerfil = ImagemPerfil
-//            if let imagens = imagens {
-//                contatoSelecionado?.imagens.append(imagens)
-//            }
-//         }
-//     }
     
     func updateContato(nome: String?, sobrenome: String?,
                        imagemPerfil: Data?, imagens: Imagens? = nil,

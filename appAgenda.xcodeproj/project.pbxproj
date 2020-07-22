@@ -93,6 +93,7 @@
 				6BD4B6CB24B3C41A00581EB1 /* ViewModel */,
 				6FE2C03824C878AD00A56655 /* Cells */,
 				6BD4B6CC24B3C42500581EB1 /* View */,
+				6FE2C03C24C8AAD800A56655 /* Helpers */,
 				6FF623FA24C786D700B0D0C7 /* Utils */,
 				6BD4B6CD24B3C75600581EB1 /* Fontes */,
 				6B0FFB7324B37F81002F336E /* Assets.xcassets */,
@@ -107,7 +108,6 @@
 			children = (
 				6F21B08E24BF7DC300AE3EAB /* HomeViewModel.swift */,
 				6F21B09024BF7DE000AE3EAB /* NewContatoViewModel.swift */,
-				6B677C4E24B60710005C2CF2 /* ImagePerfil.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -156,6 +156,14 @@
 				6B9AB14F24B4E32100E39124 /* ContatoCollectionViewCell.xib */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		6FE2C03C24C8AAD800A56655 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				6B677C4E24B60710005C2CF2 /* ImagePerfil.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		6FF623FA24C786D700B0D0C7 /* Utils */ = {

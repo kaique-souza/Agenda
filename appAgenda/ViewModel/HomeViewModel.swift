@@ -20,7 +20,13 @@ class HomeViewModel {
         return dataSource.listContact()
     }
 
-    func deleteContato (_ contato: Contato) {
-        dataSource.realmDelete(contato)
+    func deleteContato (_ contato: Contato, erro: @escaping(Error?) -> Void) {
+        dataSource.realmDelete(contato, erro: {(error) in
+            if error == nil {
+                erro(nil)
+            } else {
+                erro(error)
+            }
+        })
     }
 }

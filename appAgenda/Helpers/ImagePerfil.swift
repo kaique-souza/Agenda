@@ -23,7 +23,7 @@ class ImagePerfil: NSObject, UIImagePickerControllerDelegate, UINavigationContro
     weak var delegate: imagePickerFotoSelecionada?
 
     // MARK: - Metodos
-    
+
      func imagePickerController(_ picker: UIImagePickerController,
                                 didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let foto = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }

@@ -85,11 +85,15 @@ extension HomeViewController: UITableViewDataSource {
         DispatchQueue.main.async {
             
             let contato = self.viewmodel.setupRealm()
-            self.viewmodel.deleteContato(contato[indexPath.row])
-            self.listaContatos.remove(at: indexPath.row)
-            self.tableView.deleteRows(at: [indexPath], with: .fade)
+            self.viewmodel.deleteContato(contato[indexPath.row], erro: {(error) in
+                if error == nil {
+                    self.listaContatos.remove(at: indexPath.row)
+                    self.tableView.deleteRows(at: [indexPath], with: .fade)
+                }
+            })
         }
     }
+    
 }
 
 extension HomeViewController: UITableViewDelegate {

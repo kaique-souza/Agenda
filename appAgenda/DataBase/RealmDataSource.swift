@@ -53,18 +53,20 @@ class RealmDataSource {
             erro(nil)
         } catch let error {
             erro(error)
-            print(error.localizedDescription)
+            NSLog(error.localizedDescription)
         }
     }
     
-    func realmDelete(_ contato: Contato) {
+    func realmDelete(_ contato: Contato, erro: @escaping(Error?) -> Void) {
         guard let realm = self.realm() else { return }
         do {
             try realm.write {
                 realm.delete(contato)
             }
-        } catch let erro {
-            print(erro.localizedDescription)
+            erro(nil)
+        } catch let error {
+            erro(error)
+            NSLog(error.localizedDescription)
         }
        
     }
