@@ -9,10 +9,12 @@
 import UIKit
 import RealmSwift
 
+typealias Lista = () -> Void
+
 class HomeViewController: UIViewController {
     // MARK: - Atributs
-    var listaContatos: [Contato] = []
     let viewmodel: HomeViewModel
+    var callbackLista: Lista?
     
     // MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
@@ -30,7 +32,7 @@ class HomeViewController: UIViewController {
     // MARK: - life of cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupRealm()
+        reloadDataSource()
         setupTableView()
     }
 
@@ -43,14 +45,15 @@ class HomeViewController: UIViewController {
         tableView.reloadData()
     }
     
-    func setupRealm() {
-        listaContatos  = viewmodel.setupRealm()
+    func reloadDataSource() {
+        callbackLista = viewmodel.setupRealm
+        self.callbackLista?()
         tableView.reloadData()
     }
     
     func instatiateCell(_ contato: Contato? = nil) {
         let controller = NewContatoViewController(contato)
-        controller.setupRealm = self.setupRealm
+        controller.setupRealm = self.reloadDataSource
         present(controller, animated: true, completion: nil)
     }
     
@@ -63,31 +66,31 @@ class HomeViewController: UIViewController {
 // MARK: - Extensions
 extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return listaContatos.count
+        return viewmodel.listaContatos.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let celula = tableView.dequeueReusableCell(withIdentifier: HomeTableViewCell.identifier(),
                                                          for: indexPath)
             as? HomeTableViewCell else {return HomeTableViewCell()}
-        let contato = listaContatos[indexPath.row]
+        let contato = viewmodel.listaContatos[indexPath.row]
         celula.contatoSelecionado = contato
         celula.setupCelula(contato)
         return celula
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        instatiateCell(listaContatos[indexPath.row])
+        instatiateCell(viewmodel.listaContatos[indexPath.row])
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle,
                    forRowAt indexPath: IndexPath) {
         DispatchQueue.main.async {
             
-            let contato = self.viewmodel.setupRealm()
+            let contato = self.viewmodel.listaContatos
             self.viewmodel.deleteContato(contato[indexPath.row], erro: {(error) in
                 if error == nil {
-                    self.listaContatos.remove(at: indexPath.row)
+                    self.viewmodel.listaContatos.remove(at: indexPath.row)
                     self.tableView.deleteRows(at: [indexPath], with: .fade)
                 }
             })

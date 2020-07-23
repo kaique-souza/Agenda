@@ -92,7 +92,6 @@ class NewContatoViewModel {
         })
     }
 }
-
 //extension UIImage {
 //    enum JPEGQuality: CGFloat {
 //        case lowest  = 0
