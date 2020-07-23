@@ -26,8 +26,12 @@ class HomeTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
+ 
     // MARK: - Metodos
+    static func identifier() -> String {
+           return "CelulaContatos"
+    }
+    
     func setupCelula(_ contato: Contato) {
         guard let nome = contato.nome else { return }
         guard let sobreNome = contato.sobreNome else { return }
@@ -41,10 +45,6 @@ class HomeTableViewCell: UITableViewCell {
         setupCollectionView()
     }
     
-    static func identifier() -> String {
-        return "CelulaContatos"
-    }
-    
     func fotmatViewImagePerfil() {
         viewImagePerfil.layer.cornerRadius = viewImagePerfil.frame.width / 2
         viewImagePerfil.layer.borderWidth = 1
@@ -56,7 +56,7 @@ class HomeTableViewCell: UITableViewCell {
         collectionViewContatos.dataSource =  self
         collectionViewContatos.register(UINib(nibName:
             String(describing: ContatoCollectionViewCell.self), bundle: nil),
-                                        forCellWithReuseIdentifier: "CelulaCollectionViewContatos")
+                                        forCellWithReuseIdentifier: ContatoCollectionViewCell.identifier())
         collectionViewContatos.reloadData()
     }
 }
