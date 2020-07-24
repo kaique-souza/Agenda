@@ -9,6 +9,13 @@
 import UIKit
 import RealmSwift
 
+// MARK: - enum
+enum MenuOpcoes {
+      case camera
+      case galeria
+      case cancelar
+}
+
 class NewContatoViewModel {
     
     // MARK: - enum
@@ -91,7 +98,24 @@ class NewContatoViewModel {
                                             }
         })
     }
+    
+    func menuDeOpcoes(completion:@escaping(_ opcao:MenuOpcoes) -> Void) -> UIAlertController {
+        let menu = UIAlertController(title: Constantes.menu, message: Constantes.mensagePickImage,
+                                          preferredStyle: .actionSheet)
+        let camera = UIAlertAction(title: Constantes.tirarFoto, style: .default) { ( camera ) in
+            completion(.camera)
+        }
+           menu.addAction(camera)
+        let galeria = UIAlertAction(title: Constantes.galeria, style: .default) { (galeria) in
+            completion(.galeria)
+        }
+           menu.addAction(galeria)
+        let cancelar = UIAlertAction(title: Constantes.cancelar, style: .cancel, handler: nil)
+           menu.addAction(cancelar)
+           return menu
+    }
 }
+
 //extension UIImage {
 //    enum JPEGQuality: CGFloat {
 //        case lowest  = 0

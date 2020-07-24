@@ -9,12 +9,9 @@
 import UIKit
 import RealmSwift
 
-typealias Lista = () -> Void
-
 class HomeViewController: UIViewController {
     // MARK: - Atributs
     let viewmodel: HomeViewModel
-    var callbackLista: Lista?
     
     // MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
@@ -32,6 +29,8 @@ class HomeViewController: UIViewController {
     // MARK: - life of cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.viewmodel.reloadTableView = reloadDataSource
+        viewmodel.getListContact()
         reloadDataSource()
         setupTableView()
     }
@@ -46,14 +45,12 @@ class HomeViewController: UIViewController {
     }
     
     func reloadDataSource() {
-        callbackLista = viewmodel.setupRealm
-        self.callbackLista?()
         tableView.reloadData()
     }
     
     func instatiateCell(_ contato: Contato? = nil) {
         let controller = NewContatoViewController(contato)
-        controller.setupRealm = self.reloadDataSource
+        controller.setupRealm = self.viewmodel.getListContact
         present(controller, animated: true, completion: nil)
     }
     

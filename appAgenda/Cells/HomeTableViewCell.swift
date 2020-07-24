@@ -61,10 +61,7 @@ class HomeTableViewCell: UITableViewCell {
     }
 }
 
-extension HomeTableViewCell: UICollectionViewDelegate {
-}
-
-extension HomeTableViewCell: UICollectionViewDataSource {
+extension HomeTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let contato = contatoSelecionado else { return 0}
         return contato.imagens.count

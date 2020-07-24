@@ -143,7 +143,7 @@ class NewContatoViewController: UIViewController, imagePickerFotoSelecionada {
     }
 
     @IBAction func adicionar(_ sender: Any) {
-        let menu = ImagePerfil().menuDeOpcoes { (opcao) in
+        let menu = viewModel.menuDeOpcoes { (opcao) in
             self.origem = .buttonAdicionar
             self.mostrarMultimidia(opcao)
         }
@@ -156,7 +156,7 @@ extension NewContatoViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let index = viewModel.contatoSelecionado?.imagens.count ?? 0
             if (index == indexPath.row) {
-            let menu = ImagePerfil().menuDeOpcoes { (opcao) in
+            let menu = viewModel.menuDeOpcoes { (opcao) in
                 self.origem = .collectionViewl
                 self.mostrarMultimidia(opcao)
             }

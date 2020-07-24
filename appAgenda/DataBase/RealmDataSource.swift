@@ -14,7 +14,7 @@ class RealmDataSource {
     init() {
         
     }
-    
+
     func realm() -> Realm? {
         do {
             let realm = try Realm()
@@ -73,8 +73,8 @@ class RealmDataSource {
     
     func listContact() -> [Contato] {
         guard let realm = self.realm() else { return [] }
-        let results = realm.objects(Contato.self)
-        let listaContatos = Array(results)
-        return listaContatos
+            let results = realm.objects(Contato.self)
+            let listaContatos = Array(results)
+            return listaContatos
     }
 }
